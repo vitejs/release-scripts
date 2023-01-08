@@ -20,20 +20,25 @@ export function getPackageInfo(
   pkgName: string,
   getPkgDir: ((pkg: string) => string) | undefined = (pkg) => `packages/${pkg}`,
 ): {
+  npmName: string;
   pkgDir: string;
   pkgPath: string;
   currentVersion: string;
 } {
   const pkgDir = getPkgDir(pkgName);
   const pkgPath = path.resolve(pkgDir, "package.json");
-  const pkg = require(pkgPath) as { version: string; private?: boolean };
+  const pkg = require(pkgPath) as {
+    name: string;
+    version: string;
+    private?: boolean;
+  };
   const currentVersion = pkg.version;
 
   if (pkg.private) {
     throw new Error(`Package ${pkgName} is private`);
   }
 
-  return { pkgDir, pkgPath, currentVersion };
+  return { npmName: pkg.name, pkgDir, pkgPath, currentVersion };
 }
 
 export async function run(
@@ -148,11 +153,15 @@ export async function publishPackage(
   });
 }
 
-export async function getActiveVersion(pkgName: string): Promise<string> {
-  const npmName =
-    pkgName === "vite" || pkgName === "create-vite"
-      ? pkgName
-      : `@vitejs/${pkgName}`;
-  return (await run("npm", ["info", npmName, "version"], { stdio: "pipe" }))
-    .stdout;
+export async function getActiveVersion(
+  npmName: string,
+): Promise<string | undefined> {
+  try {
+    return (await run("npm", ["info", npmName, "version"], { stdio: "pipe" }))
+      .stdout;
+  } catch (e: any) {
+    // Not published yet
+    if (e.stderr.startsWith("npm ERR! code E404")) return;
+    throw e;
+  }
 }

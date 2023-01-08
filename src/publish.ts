@@ -20,20 +20,23 @@ export const publish: typeof def = async ({ defaultPackage, getPkgDir }) => {
 
   if (version.startsWith("v")) version = version.slice(1);
 
-  const { currentVersion, pkgDir } = getPackageInfo(pkgName, getPkgDir);
+  const { npmName, currentVersion, pkgDir } = getPackageInfo(
+    pkgName,
+    getPkgDir,
+  );
   if (currentVersion !== version)
     throw new Error(
       `Package version from tag "${version}" mismatches with current version "${currentVersion}"`,
     );
 
-  const activeVersion = await getActiveVersion(pkgName);
+  const activeVersion = await getActiveVersion(npmName);
 
   step("Publishing package...");
   const releaseTag = version.includes("beta")
     ? "beta"
     : version.includes("alpha")
     ? "alpha"
-    : semver.lt(currentVersion, activeVersion)
+    : activeVersion && semver.lt(currentVersion, activeVersion)
     ? "previous"
     : undefined;
   await publishPackage(pkgDir, releaseTag);
