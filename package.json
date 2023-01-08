@@ -4,7 +4,9 @@
   "description": "@vitejs release scripts",
   "license": "MIT",
   "main": "dist/index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsx scripts/build.ts",
     "prettier": "pnpm prettier-ci --write",
