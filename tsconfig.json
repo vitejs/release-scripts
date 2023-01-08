@@ -1,0 +1,27 @@
+{
+  "include": ["src", "scripts"],
+  "compilerOptions": {
+    /* Target node 16 */
+    "module": "ES2020",
+    "lib": ["ES2021"],
+    "target": "ES2021",
+    "skipLibCheck": true,
+
+    /* Transpile with esbuild */
+    "noEmit": true,
+    "isolatedModules": true,
+
+    /* Imports */
+    "moduleResolution": "node", // Allow `index` imports
+    "resolveJsonModule": true, // Allow json import
+    "forceConsistentCasingInFileNames": true, // Avoid difference in case between file name and import
+    "allowSyntheticDefaultImports": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": true
+  }
+}

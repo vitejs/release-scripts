@@ -1,0 +1,35 @@
+{
+  "name": "@vitejs/release-scripts",
+  "version": "1.0.0",
+  "description": "@vitejs release scripts",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsx scripts/build.ts",
+    "prettier": "pnpm prettier-ci --write",
+    "prettier-ci": "prettier --cache --ignore-path=.gitignore --check '**/*.{ts,json,md,yml}'",
+    "ci": "tsc && pnpm prettier-ci && pnpm build",
+    "release": "tsx scripts/release.ts"
+  },
+  "prettier": {
+    "trailingComma": "all"
+  },
+  "dependencies": {
+    "execa": "^6.1.0",
+    "minimist": "^1.2.7",
+    "picocolors": "^1.0.0",
+    "prompts": "^2.4.2",
+    "semver": "^7.3.8"
+  },
+  "devDependencies": {
+    "@types/minimist": "^1.2.2",
+    "@types/node": "^18.11.18",
+    "@types/prompts": "^2.4.2",
+    "@types/semver": "^7.3.13",
+    "esbuild": "^0.16.15",
+    "prettier": "^2.8.2",
+    "tsx": "^3.12.1",
+    "typescript": "^4.9.4"
+  }
+}
