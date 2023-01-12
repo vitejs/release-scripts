@@ -85,7 +85,7 @@ export const release: typeof def = async ({
 
   step("\nUpdating package version...");
   updateVersion(pkgPath, targetVersion);
-  await generateChangelog(pkg);
+  await generateChangelog(pkg, targetVersion);
 
   const { stdout } = await run("git", ["diff"], { stdio: "pipe" });
   if (stdout) {

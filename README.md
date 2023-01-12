@@ -21,7 +21,7 @@ release({
         "git log $(git describe --tags --abbrev=0)..HEAD --oneline",
       ).toString(),
     ),
-  generateChangelog: (pkg) => {},
+  generateChangelog: (pkg, version) => {},
   // use getPkgDir when not using a monorepo. Default to `packages/${pkg}`
   getPkgDir: (pkg) => ".",
 });
