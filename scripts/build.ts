@@ -9,6 +9,7 @@ buildSync({
   outdir: "dist",
   bundle: true,
   platform: "node",
+  format: "esm",
   external: Object.keys(dependencies),
 });
 

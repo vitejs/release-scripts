@@ -4,9 +4,16 @@
   "description": "@vitejs release scripts",
   "license": "MIT",
   "main": "dist/index.js",
+  "type": "module",
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build": "tsx scripts/build.ts",
     "prettier": "pnpm prettier-ci --write",
@@ -22,6 +29,7 @@
     "minimist": "^1.2.7",
     "picocolors": "^1.0.0",
     "prompts": "^2.4.2",
+    "publint": "^0.1.9",
     "semver": "^7.3.8"
   },
   "devDependencies": {

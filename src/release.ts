@@ -12,6 +12,8 @@ import {
   updateVersion,
 } from "./utils";
 import type { release as def } from "./types";
+import { publint } from "publint";
+import { printMessage } from "publint/utils";
 
 export const release: typeof def = async ({
   repo,
@@ -23,7 +25,7 @@ export const release: typeof def = async ({
 }) => {
   let targetVersion: string | undefined;
 
-  const pkg: string =
+  const selectedPkg: string =
     packages.length === 1
       ? packages[0]
       : (
@@ -35,18 +37,30 @@ export const release: typeof def = async ({
           })
         ).pkg;
 
-  if (!pkg) return;
+  if (!selectedPkg) return;
 
-  await logChangelog(pkg);
+  await logChangelog(selectedPkg);
 
-  const { currentVersion, pkgPath } = getPackageInfo(pkg, getPkgDir);
+  const { pkg, pkgPath, pkgDir } = getPackageInfo(selectedPkg, getPkgDir);
+
+  const messages = await publint({ pkgDir });
+
+  if (messages.length) {
+    for (const message of messages) console.log(printMessage(message, pkg));
+    const { yes }: { yes: boolean } = await prompts({
+      type: "confirm",
+      name: "yes",
+      message: `${messages.length} messages from publint. Continue anyway?`,
+    });
+    if (!yes) process.exit(1);
+  }
 
   if (!targetVersion) {
     const { release }: { release: string } = await prompts({
       type: "select",
       name: "release",
       message: "Select release type",
-      choices: getVersionChoices(currentVersion),
+      choices: getVersionChoices(pkg.version),
     });
 
     if (release === "custom") {
@@ -54,7 +68,7 @@ export const release: typeof def = async ({
         type: "text",
         name: "version",
         message: "Input custom version",
-        initial: currentVersion,
+        initial: pkg.version,
       });
       targetVersion = res.version;
     } else {
@@ -66,7 +80,7 @@ export const release: typeof def = async ({
     throw new Error(`invalid target version: ${targetVersion}`);
   }
 
-  const tag = toTag(pkg, targetVersion);
+  const tag = toTag(selectedPkg, targetVersion);
 
   if (targetVersion.includes("beta") && !args.tag) {
     args.tag = "beta";
@@ -85,7 +99,7 @@ export const release: typeof def = async ({
 
   step("\nUpdating package version...");
   updateVersion(pkgPath, targetVersion);
-  await generateChangelog(pkg, targetVersion);
+  await generateChangelog(selectedPkg, targetVersion);
 
   const { stdout } = await run("git", ["diff"], { stdio: "pipe" });
   if (stdout) {

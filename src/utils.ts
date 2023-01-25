@@ -19,26 +19,20 @@ if (isDryRun) {
 export function getPackageInfo(
   pkgName: string,
   getPkgDir: ((pkg: string) => string) | undefined = (pkg) => `packages/${pkg}`,
-): {
-  npmName: string;
-  pkgDir: string;
-  pkgPath: string;
-  currentVersion: string;
-} {
+) {
   const pkgDir = getPkgDir(pkgName);
   const pkgPath = path.resolve(pkgDir, "package.json");
-  const pkg = require(pkgPath) as {
+  const pkg = JSON.parse(readFileSync(pkgPath, "utf-8")) as {
     name: string;
     version: string;
     private?: boolean;
   };
-  const currentVersion = pkg.version;
 
   if (pkg.private) {
     throw new Error(`Package ${pkgName} is private`);
   }
 
-  return { npmName: pkg.name, pkgDir, pkgPath, currentVersion };
+  return { pkg, pkgDir, pkgPath };
 }
 
 export async function run(
