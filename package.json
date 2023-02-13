@@ -25,7 +25,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
-    "execa": "^6.1.0",
+    "execa": "^7.0.0",
     "minimist": "^1.2.7",
     "picocolors": "^1.0.0",
     "prompts": "^2.4.2",

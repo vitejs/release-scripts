@@ -6,7 +6,7 @@ specifiers:
   '@types/prompts': ^2.4.2
   '@types/semver': ^7.3.13
   esbuild: ^0.17.5
-  execa: ^6.1.0
+  execa: ^7.0.0
   minimist: ^1.2.7
   picocolors: ^1.0.0
   prettier: ^2.8.3
@@ -17,7 +17,7 @@ specifiers:
   typescript: ^4.9.4
 
 dependencies:
-  execa: 6.1.0
+  execa: 7.0.0
   minimist: 1.2.7
   picocolors: 1.0.0
   prompts: 2.4.2
@@ -555,13 +555,13 @@ packages:
       '@esbuild/win32-x64': 0.17.5
     dev: true
 
-  /execa/6.1.0:
-    resolution: {integrity: sha512-QVWlX2e50heYJcCPG0iWtf8r0xjEYfz/OYLGDYH+IyjWezzPNxz63qNFOu0l4YftGWuizFVZHHs8PrLU5p2IDA==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+  /execa/7.0.0:
+    resolution: {integrity: sha512-tQbH0pH/8LHTnwTrsKWideqi6rFB/QNUawEwrn+WHyz7PX1Tuz2u7wfTvbaNBdP5JD5LVWxNo8/A8CHNZ3bV6g==}
+    engines: {node: ^14.18.0 || ^16.14.0 || >=18.0.0}
     dependencies:
       cross-spawn: 7.0.3
       get-stream: 6.0.1
-      human-signals: 3.0.1
+      human-signals: 4.3.0
       is-stream: 3.0.0
       merge-stream: 2.0.0
       npm-run-path: 5.1.0
@@ -602,9 +602,9 @@ packages:
       once: 1.4.0
     dev: false
 
-  /human-signals/3.0.1:
-    resolution: {integrity: sha512-rQLskxnM/5OCldHo+wNXbpVgDn5A17CUoKX+7Sokwaknlq7CdSnphy0W39GU8dw59XiCXmFXDg4fRuckQRKewQ==}
-    engines: {node: '>=12.20.0'}
+  /human-signals/4.3.0:
+    resolution: {integrity: sha512-zyzVyMjpGBX2+6cDVZeFPCdtOtdsxOeseRhB9tkQ6xXmGUNrcnBzdEKPy3VPNYz+4gy1oukVOXcrJCunSyc6QQ==}
+    engines: {node: '>=14.18.0'}
     dev: false
 
   /ignore-walk/5.0.1:
