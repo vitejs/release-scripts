@@ -18,7 +18,7 @@
     "build": "tsx scripts/build.ts",
     "prettier": "pnpm prettier-ci --write",
     "prettier-ci": "prettier --cache --ignore-path=.gitignore --check '**/*.{ts,json,md,yml}'",
-    "ci": "tsc && pnpm prettier-ci && pnpm build",
+    "qa": "tsc && pnpm prettier-ci && pnpm build",
     "release": "tsx scripts/release.ts"
   },
   "prettier": {
