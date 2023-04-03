@@ -35,11 +35,11 @@
   "devDependencies": {
     "@types/minimist": "^1.2.2",
     "@types/node": "^18.15.11",
-    "@types/prompts": "^2.4.3",
+    "@types/prompts": "^2.4.4",
     "@types/semver": "^7.3.13",
-    "esbuild": "^0.17.14",
+    "esbuild": "^0.17.15",
     "prettier": "^2.8.7",
     "tsx": "^3.12.6",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.3"
   }
 }
