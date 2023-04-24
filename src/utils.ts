@@ -137,10 +137,14 @@ export function updateVersion(pkgPath: string, version: string): void {
 export async function publishPackage(
   pkdDir: string,
   tag?: string,
+  provenance?: boolean,
 ): Promise<void> {
   const publicArgs = ["publish", "--access", "public"];
   if (tag) {
     publicArgs.push(`--tag`, tag);
+  }
+  if (provenance) {
+    publicArgs.push(`--provenance`)
   }
   await runIfNotDry("npm", publicArgs, {
     cwd: pkdDir,

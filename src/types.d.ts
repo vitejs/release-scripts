@@ -1,6 +1,11 @@
 export declare function publish(options: {
   defaultPackage: string;
   getPkgDir?: (pkg: string) => string;
+  /**
+   * Enables npm package provenance https://docs.npmjs.com/generating-provenance-statements
+   * @default false
+   */
+  provenance?: boolean;
 }): Promise<void>;
 
 export declare function release(options: {

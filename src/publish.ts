@@ -8,7 +8,7 @@ import {
 } from "./utils";
 import type { publish as def } from "./types";
 
-export const publish: typeof def = async ({ defaultPackage, getPkgDir }) => {
+export const publish: typeof def = async ({ defaultPackage, getPkgDir, provenance }) => {
   const tag = args._[0];
   if (!tag) throw new Error("No tag specified");
 
@@ -36,5 +36,5 @@ export const publish: typeof def = async ({ defaultPackage, getPkgDir }) => {
     : activeVersion && semver.lt(pkg.version, activeVersion)
     ? "previous"
     : undefined;
-  await publishPackage(pkgDir, releaseTag);
+  await publishPackage(pkgDir, releaseTag, provenance);
 };
