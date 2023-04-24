@@ -144,7 +144,7 @@ export async function publishPackage(
     publicArgs.push(`--tag`, tag);
   }
   if (provenance) {
-    publicArgs.push(`--provenance`)
+    publicArgs.push(`--provenance`);
   }
   await runIfNotDry("npm", publicArgs, {
     cwd: pkdDir,

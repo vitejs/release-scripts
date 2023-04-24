@@ -8,7 +8,11 @@ import {
 } from "./utils";
 import type { publish as def } from "./types";
 
-export const publish: typeof def = async ({ defaultPackage, getPkgDir, provenance }) => {
+export const publish: typeof def = async ({
+  defaultPackage,
+  getPkgDir,
+  provenance,
+}) => {
   const tag = args._[0];
   if (!tag) throw new Error("No tag specified");
 
