@@ -25,8 +25,8 @@ devDependencies:
     specifier: ^1.2.2
     version: 1.2.2
   '@types/node':
-    specifier: ^18.16.0
-    version: 18.16.0
+    specifier: ^18.16.3
+    version: 18.16.3
   '@types/prompts':
     specifier: ^2.4.4
     version: 2.4.4
@@ -40,8 +40,8 @@ devDependencies:
     specifier: ^2.8.8
     version: 2.8.8
   tsx:
-    specifier: ^3.12.6
-    version: 3.12.6
+    specifier: ^3.12.7
+    version: 3.12.7
   typescript:
     specifier: ^5.0.4
     version: 5.0.4
@@ -289,14 +289,14 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node@18.16.0:
-    resolution: {integrity: sha512-BsAaKhB+7X+H4GnSjGhJG9Qi8Tw+inU9nJDwmD5CgOmBLEI6ArdhikpLX7DjbjDRDTbqZzU2LSQNZg8WGPiSZQ==}
+  /@types/node@18.16.3:
+    resolution: {integrity: sha512-OPs5WnnT1xkCBiuQrZA4+YAV4HEJejmHneyraIaxsbev5yCEr6KMwINNFP9wQeFIw8FWcoTqF3vQsa5CDaI+8Q==}
     dev: true
 
   /@types/prompts@2.4.4:
     resolution: {integrity: sha512-p5N9uoTH76lLvSAaYSZtBCdEXzpOOufsRjnhjVSrZGXikVGHX9+cc9ERtHRV4hvBKHyZb1bg4K+56Bd2TqUn4A==}
     dependencies:
-      '@types/node': 18.16.0
+      '@types/node': 18.16.3
       kleur: 3.0.3
     dev: true
 
@@ -815,8 +815,8 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /tsx@3.12.6:
-    resolution: {integrity: sha512-q93WgS3lBdHlPgS0h1i+87Pt6n9K/qULIMNYZo07nSeu2z5QE2CellcAZfofVXBo2tQg9av2ZcRMQ2S2i5oadQ==}
+  /tsx@3.12.7:
+    resolution: {integrity: sha512-C2Ip+jPmqKd1GWVQDvz/Eyc6QJbGfE7NrR3fx5BpEHMZsEHoIxHL1j+lKdGobr8ovEyqeNkPLSKp6SCSOt7gmw==}
     hasBin: true
     dependencies:
       '@esbuild-kit/cjs-loader': 2.4.2
