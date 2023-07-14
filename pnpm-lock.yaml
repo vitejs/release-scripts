@@ -1,12 +1,16 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   execa:
     specifier: ^7.1.1
     version: 7.1.1
-  minimist:
-    specifier: ^1.2.8
-    version: 1.2.8
+  mri:
+    specifier: ^1.2.0
+    version: 1.2.0
   picocolors:
     specifier: ^1.0.0
     version: 1.0.0
@@ -21,9 +25,6 @@ dependencies:
     version: 7.5.1
 
 devDependencies:
-  '@types/minimist':
-    specifier: ^1.2.2
-    version: 1.2.2
   '@types/node':
     specifier: ^18.16.9
     version: 18.16.9
@@ -284,10 +285,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@types/minimist@1.2.2:
-    resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
-    dev: true
 
   /@types/node@18.16.9:
     resolution: {integrity: sha512-IeB32oIV4oGArLrd7znD2rkHQ6EDCM+2Sr76dJnrHwv9OHBTTM6nuDLK9bmikXzPa0ZlWMWtRGo/Uw4mrzQedA==}
@@ -671,10 +668,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       brace-expansion: 2.0.1
-    dev: false
-
-  /minimist@1.2.8:
-    resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: false
 
   /mri@1.2.0:
