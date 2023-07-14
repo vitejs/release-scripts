@@ -5,9 +5,9 @@ import type { Options as ExecaOptions, ExecaReturnValue } from "execa";
 import { execa } from "execa";
 import type { ReleaseType } from "semver";
 import semver from "semver";
-import minimist from "minimist";
+import mri from "mri";
 
-export const args = minimist(process.argv.slice(2));
+export const args = mri(process.argv.slice(2));
 
 export const isDryRun = !!args.dry;
 
