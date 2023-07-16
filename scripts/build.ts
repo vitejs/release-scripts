@@ -1,6 +1,6 @@
 import { copyFileSync, rmSync } from "node:fs";
 import { buildSync } from "esbuild";
-import { dependencies } from "../package.json";
+import pkg from "../package.json";
 
 rmSync("dist", { force: true, recursive: true });
 
@@ -10,7 +10,7 @@ buildSync({
   bundle: true,
   platform: "node",
   format: "esm",
-  external: Object.keys(dependencies),
+  external: Object.keys(pkg.dependencies),
 });
 
 copyFileSync("src/types.d.ts", "dist/index.d.ts");

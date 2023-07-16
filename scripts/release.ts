@@ -1,5 +1,5 @@
 import { execSync } from "child_process";
-import { release } from "../src";
+import { release } from "../src/release.ts";
 
 release({
   repo: "release-scripts",

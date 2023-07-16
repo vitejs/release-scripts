@@ -1,4 +1,4 @@
-import { publish } from "../src";
+import { publish } from "../src/publish.ts";
 
 publish({
   defaultPackage: "release-scripts",

@@ -9,6 +9,7 @@
 
     /* Transpile with esbuild */
     "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
     "noEmit": true,
     "isolatedModules": true,
     "resolveJsonModule": true,

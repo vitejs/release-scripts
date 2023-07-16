@@ -1,2 +1,2 @@
-export { publish } from "./publish";
-export { release } from "./release";
+export { publish } from "./publish.ts";
+export { release } from "./release.ts";

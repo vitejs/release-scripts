@@ -15,30 +15,27 @@
     }
   },
   "scripts": {
-    "build": "tsx scripts/build.ts",
+    "build": "tnode scripts/build.ts",
     "prettier": "pnpm prettier-ci --write",
     "prettier-ci": "prettier --cache --ignore-path=.gitignore --check '**/*.{ts,json,md,yml}'",
     "qa": "tsc && pnpm prettier-ci && pnpm build",
-    "release": "tsx scripts/release.ts"
-  },
-  "prettier": {
-    "trailingComma": "all"
+    "release": "tnode scripts/release.ts"
   },
   "dependencies": {
     "execa": "^7.1.1",
     "mri": "^1.2.0",
     "picocolors": "^1.0.0",
     "prompts": "^2.4.2",
-    "publint": "^0.1.11",
-    "semver": "^7.5.1"
+    "publint": "^0.1.16",
+    "semver": "^7.5.4"
   },
   "devDependencies": {
-    "@types/node": "^18.16.9",
+    "@arnaud-barre/tnode": "^0.18.0",
+    "@types/node": "^18.16.19",
     "@types/prompts": "^2.4.4",
     "@types/semver": "^7.5.0",
-    "esbuild": "^0.17.19",
-    "prettier": "^2.8.8",
-    "tsx": "^3.12.7",
-    "typescript": "^5.0.4"
+    "esbuild": "^0.18.13",
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6"
   }
 }

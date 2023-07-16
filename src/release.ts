@@ -10,8 +10,8 @@ import {
   runIfNotDry,
   step,
   updateVersion,
-} from "./utils";
-import type { release as def } from "./types";
+} from "./utils.ts";
+import type { release as def } from "./types.d.ts";
 import { publint } from "publint";
 import { printMessage } from "publint/utils";
 
