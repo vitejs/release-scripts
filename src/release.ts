@@ -13,7 +13,7 @@ import {
 } from "./utils.ts";
 import type { release as def } from "./types.d.ts";
 import { publint } from "publint";
-import { printMessage } from "publint/utils";
+import { formatMessage } from "publint/utils";
 
 export const release: typeof def = async ({
   repo,
@@ -43,10 +43,10 @@ export const release: typeof def = async ({
 
   const { pkg, pkgPath, pkgDir } = getPackageInfo(selectedPkg, getPkgDir);
 
-  const messages = await publint({ pkgDir });
+  const { messages } = await publint({ pkgDir });
 
   if (messages.length) {
-    for (const message of messages) console.log(printMessage(message, pkg));
+    for (const message of messages) console.log(formatMessage(message, pkg));
     const { yes }: { yes: boolean } = await prompts({
       type: "confirm",
       name: "yes",
