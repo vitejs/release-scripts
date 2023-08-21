@@ -22,7 +22,7 @@
     "release": "tnode scripts/release.ts"
   },
   "dependencies": {
-    "execa": "^7.2.0",
+    "execa": "^8.0.1",
     "mri": "^1.2.0",
     "picocolors": "^1.0.0",
     "prompts": "^2.4.2",
