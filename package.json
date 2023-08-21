@@ -22,20 +22,20 @@
     "release": "tnode scripts/release.ts"
   },
   "dependencies": {
-    "execa": "^7.1.1",
+    "execa": "^7.2.0",
     "mri": "^1.2.0",
     "picocolors": "^1.0.0",
     "prompts": "^2.4.2",
-    "publint": "^0.2.0",
+    "publint": "^0.2.2",
     "semver": "^7.5.4"
   },
   "devDependencies": {
-    "@arnaud-barre/tnode": "^0.18.0",
-    "@types/node": "^18.16.19",
+    "@arnaud-barre/tnode": "^0.19.1",
+    "@types/node": "^18.17.6",
     "@types/prompts": "^2.4.4",
     "@types/semver": "^7.5.0",
-    "esbuild": "^0.18.13",
-    "prettier": "^3.0.0",
+    "esbuild": "^0.19.2",
+    "prettier": "^3.0.2",
     "typescript": "^5.1.6"
   }
 }
