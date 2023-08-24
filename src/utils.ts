@@ -20,7 +20,7 @@ export function getPackageInfo(
   pkgName: string,
   getPkgDir: ((pkg: string) => string) | undefined = (pkg) => `packages/${pkg}`,
 ) {
-  const pkgDir = getPkgDir(pkgName);
+  const pkgDir = path.resolve(getPkgDir(pkgName));
   const pkgPath = path.resolve(pkgDir, "package.json");
   const pkg = JSON.parse(readFileSync(pkgPath, "utf-8")) as {
     name: string;
@@ -135,7 +135,7 @@ export function updateVersion(pkgPath: string, version: string): void {
 }
 
 export async function publishPackage(
-  pkdDir: string,
+  pkgDir: string,
   tag?: string,
   provenance?: boolean,
 ): Promise<void> {
@@ -147,7 +147,7 @@ export async function publishPackage(
     publicArgs.push(`--provenance`);
   }
   await runIfNotDry("npm", publicArgs, {
-    cwd: pkdDir,
+    cwd: pkgDir,
   });
 }
 
