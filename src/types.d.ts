@@ -6,6 +6,11 @@ export declare function publish(options: {
    * @default false
    */
   provenance?: boolean;
+  /**
+   * Package manager that runs the publish command
+   * @default "npm"
+   */
+  packageManager?: "npm" | "pnpm";
 }): Promise<void>;
 
 export declare function release(options: {

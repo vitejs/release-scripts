@@ -12,6 +12,7 @@ export const publish: typeof def = async ({
   defaultPackage,
   getPkgDir,
   provenance,
+  packageManager,
 }) => {
   const tag = args._[0];
   if (!tag) throw new Error("No tag specified");
@@ -40,5 +41,5 @@ export const publish: typeof def = async ({
     : activeVersion && semver.lt(pkg.version, activeVersion)
     ? "previous"
     : undefined;
-  await publishPackage(pkgDir, releaseTag, provenance);
+  await publishPackage(pkgDir, releaseTag, provenance, packageManager);
 };

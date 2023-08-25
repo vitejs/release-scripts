@@ -138,6 +138,7 @@ export async function publishPackage(
   pkgDir: string,
   tag?: string,
   provenance?: boolean,
+  packageManager: "npm" | "pnpm" = "npm",
 ): Promise<void> {
   const publicArgs = ["publish", "--access", "public"];
   if (tag) {
@@ -146,7 +147,7 @@ export async function publishPackage(
   if (provenance) {
     publicArgs.push(`--provenance`);
   }
-  await runIfNotDry("npm", publicArgs, {
+  await runIfNotDry(packageManager, publicArgs, {
     cwd: pkgDir,
   });
 }
