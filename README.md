@@ -22,7 +22,7 @@ release({
       ).toString(),
     ),
   generateChangelog: (pkg, version) => {},
-  // use getPkgDir when not using a monorepo. Default to `packages/${pkg}`
+  // Use getPkgDir when not using a monorepo. Default to `packages/${pkg}`
   getPkgDir: (pkg) => ".",
 });
 ```
@@ -35,7 +35,11 @@ import { publish } from "@vitejs/release-scripts";
 publish({
   // Used when tag is not `pkg@version`
   defaultPackage: "release-scripts",
-  // use getPkgDir when not in a monorepo. Default to `packages/${pkg}`
+  // Use getPkgDir when not in a monorepo. Default to `packages/${pkg}`
   getPkgDir: (pkg) => ".",
+  // Publish with provenance https://docs.npmjs.com/generating-provenance-statements
+  provenance: true,
+  // Package manager that runs the publish command
+  packageManager: "pnpm",
 });
 ```
