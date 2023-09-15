@@ -147,6 +147,9 @@ export async function publishPackage(
   if (provenance) {
     publicArgs.push(`--provenance`);
   }
+  if (packageManager === "pnpm") {
+    publicArgs.push(`--no-git-checks`);
+  }
   await runIfNotDry(packageManager, publicArgs, {
     cwd: pkgDir,
   });
