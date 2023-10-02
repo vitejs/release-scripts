@@ -26,15 +26,15 @@
     "mri": "^1.2.0",
     "picocolors": "^1.0.0",
     "prompts": "^2.4.2",
-    "publint": "^0.2.2",
+    "publint": "^0.2.3",
     "semver": "^7.5.4"
   },
   "devDependencies": {
     "@arnaud-barre/tnode": "^0.19.1",
-    "@types/node": "^18.17.19",
+    "@types/node": "^18.18.1",
     "@types/prompts": "^2.4.5",
-    "@types/semver": "^7.5.2",
-    "esbuild": "^0.19.3",
+    "@types/semver": "^7.5.3",
+    "esbuild": "^0.19.4",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   }
