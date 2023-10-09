@@ -30,8 +30,8 @@
     "semver": "^7.5.4"
   },
   "devDependencies": {
-    "@arnaud-barre/tnode": "^0.19.1",
-    "@types/node": "^18.18.1",
+    "@arnaud-barre/tnode": "^0.19.2",
+    "@types/node": "^18.18.4",
     "@types/prompts": "^2.4.5",
     "@types/semver": "^7.5.3",
     "esbuild": "^0.19.4",
