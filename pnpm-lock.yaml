@@ -26,11 +26,11 @@ dependencies:
 
 devDependencies:
   '@arnaud-barre/tnode':
-    specifier: ^0.19.1
-    version: 0.19.1
+    specifier: ^0.19.2
+    version: 0.19.2
   '@types/node':
-    specifier: ^18.18.1
-    version: 18.18.1
+    specifier: ^18.18.4
+    version: 18.18.4
   '@types/prompts':
     specifier: ^2.4.5
     version: 2.4.5
@@ -49,8 +49,8 @@ devDependencies:
 
 packages:
 
-  /@arnaud-barre/tnode@0.19.1:
-    resolution: {integrity: sha512-QehhdJ7mHvDCjjNcb/Bp/COA95mtmD/nF+nhY19vB2sZLRX8HtmzNvXd4tYvHh96IrmYttMSc+Dq5xIO/vf9Kw==}
+  /@arnaud-barre/tnode@0.19.2:
+    resolution: {integrity: sha512-YctrCVB4J7nC5JwfRArdDvC+/Y9oc+DBOZmdOkovYIAwzCiyfP/q+q1hXtndKl2SMWkhLLj0LWJGmax1OKOFxw==}
     hasBin: true
     dependencies:
       esbuild: 0.19.4
@@ -254,14 +254,14 @@ packages:
     dev: true
     optional: true
 
-  /@types/node@18.18.1:
-    resolution: {integrity: sha512-3G42sxmm0fF2+Vtb9TJQpnjmP+uKlWvFa8KoEGquh4gqRmoUG/N0ufuhikw6HEsdG2G2oIKhog1GCTfz9v5NdQ==}
+  /@types/node@18.18.4:
+    resolution: {integrity: sha512-t3rNFBgJRugIhackit2mVcLfF6IRc0JE4oeizPQL8Zrm8n2WY/0wOdpOPhdtG0V9Q2TlW/axbF1MJ6z+Yj/kKQ==}
     dev: true
 
   /@types/prompts@2.4.5:
     resolution: {integrity: sha512-TvrzGMCwARi2qqXcD7VmvMvfMP3F7JRQpeEHECK0oufRNZInoBqzd8v/1zksKFE5XW8OOGto/5FsDT8lnpvGRA==}
     dependencies:
-      '@types/node': 18.18.1
+      '@types/node': 18.18.4
       kleur: 3.0.3
     dev: true
 
