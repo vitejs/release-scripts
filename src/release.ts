@@ -22,6 +22,7 @@ export const release: typeof def = async ({
   generateChangelog,
   toTag,
   getPkgDir,
+  commitAuthor,
 }) => {
   let targetVersion: string | undefined;
 
@@ -105,7 +106,12 @@ export const release: typeof def = async ({
   if (stdout) {
     step("\nCommitting changes...");
     await runIfNotDry("git", ["add", "-A"]);
-    await runIfNotDry("git", ["commit", "-m", `release: ${tag}`]);
+    await runIfNotDry("git", [
+      "commit",
+      "-m",
+      `release: ${tag}`,
+      ...(commitAuthor ? ["--author", commitAuthor] : []),
+    ]);
     await runIfNotDry("git", ["tag", tag]);
   } else {
     console.log("No changes to commit.");

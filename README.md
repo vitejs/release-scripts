@@ -24,6 +24,9 @@ release({
   generateChangelog: (pkg, version) => {},
   // Use getPkgDir when not using a monorepo. Default to `packages/${pkg}`
   getPkgDir: (pkg) => ".",
+  // The git commit `--author` for the release commit. Defaults to you.
+  commitAuthor:
+    "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
 });
 ```
 

@@ -20,4 +20,5 @@ export declare function release(options: {
   generateChangelog: (pkg: string, version: string) => void | Promise<void>;
   toTag: (pkg: string, version: string) => string;
   getPkgDir?: (pkg: string) => string;
+  commitAuthor?: string;
 }): Promise<void>;
