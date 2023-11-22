@@ -14,6 +14,10 @@
       "import": "./dist/index.js"
     }
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:vitejs/release-scripts.git"
+  },
   "scripts": {
     "build": "tnode scripts/build.ts",
     "prettier": "pnpm prettier-ci --write",
