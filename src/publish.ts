@@ -37,9 +37,9 @@ export const publish: typeof def = async ({
   const releaseTag = version.includes("beta")
     ? "beta"
     : version.includes("alpha")
-    ? "alpha"
-    : activeVersion && semver.lt(pkg.version, activeVersion)
-    ? "previous"
-    : undefined;
+      ? "alpha"
+      : activeVersion && semver.lt(pkg.version, activeVersion)
+        ? "previous"
+        : undefined;
   await publishPackage(pkgDir, releaseTag, provenance, packageManager);
 };
