@@ -35,8 +35,8 @@ devDependencies:
     specifier: ^2.4.9
     version: 2.4.9
   '@types/semver':
-    specifier: ^7.5.6
-    version: 7.5.6
+    specifier: ^7.5.7
+    version: 7.5.7
   esbuild:
     specifier: ^0.20.0
     version: 0.20.0
@@ -483,8 +483,8 @@ packages:
       kleur: 3.0.3
     dev: true
 
-  /@types/semver@7.5.6:
-    resolution: {integrity: sha512-dn1l8LaMea/IjDoHNd9J52uBbInB796CDffS6VdIxvqYCPSG0V0DzHp76GpaWnlhg88uYyPbXCDIowa86ybd5A==}
+  /@types/semver@7.5.7:
+    resolution: {integrity: sha512-/wdoPq1QqkSj9/QOeKkFquEuPzQbHTWAMPH/PaUMB+JuR31lXhlWXRZ52IpfDYVlDOUBvX09uBrPwxGT1hjNBg==}
     dev: true
 
   /balanced-match@1.0.2:
