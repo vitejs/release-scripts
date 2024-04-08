@@ -35,11 +35,11 @@
   },
   "devDependencies": {
     "@arnaud-barre/tnode": "^0.19.2",
-    "@types/node": "^20.12.4",
+    "@types/node": "^20.12.5",
     "@types/prompts": "^2.4.9",
     "@types/semver": "^7.5.8",
     "esbuild": "^0.20.2",
     "prettier": "^3.2.5",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.4"
   }
 }
