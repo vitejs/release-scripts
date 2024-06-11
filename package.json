@@ -26,7 +26,7 @@
     "release": "tnode scripts/release.ts"
   },
   "dependencies": {
-    "execa": "^8.0.1",
+    "execa": "^9.2.0",
     "mri": "^1.2.0",
     "picocolors": "^1.0.1",
     "prompts": "^2.4.2",
