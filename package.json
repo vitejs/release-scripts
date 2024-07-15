@@ -35,12 +35,12 @@
   },
   "devDependencies": {
     "@arnaud-barre/tnode": "^0.19.2",
-    "@types/node": "^20.14.2",
+    "@types/node": "^20.14.10",
     "@types/prompts": "^2.4.9",
     "@types/semver": "^7.5.8",
-    "esbuild": "^0.21.5",
-    "prettier": "^3.3.2",
-    "typescript": "^5.4.5"
+    "esbuild": "^0.23.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.3"
   },
-  "packageManager": "pnpm@9.3.0"
+  "packageManager": "pnpm@9.5.0"
 }
