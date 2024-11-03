@@ -28,19 +28,19 @@
   "dependencies": {
     "execa": "^8.0.1",
     "mri": "^1.2.0",
-    "picocolors": "^1.1.0",
+    "picocolors": "^1.1.1",
     "prompts": "^2.4.2",
-    "publint": "^0.2.11",
+    "publint": "^0.2.12",
     "semver": "^7.6.3"
   },
   "devDependencies": {
-    "@arnaud-barre/tnode": "^0.19.2",
-    "@types/node": "^20.16.11",
+    "@arnaud-barre/tnode": "^0.24.0",
+    "@types/node": "^20.17.6",
     "@types/prompts": "^2.4.9",
     "@types/semver": "^7.5.8",
     "esbuild": "^0.24.0",
     "prettier": "^3.3.3",
     "typescript": "^5.6.3"
   },
-  "packageManager": "pnpm@9.12.1"
+  "packageManager": "pnpm@9.12.3"
 }
