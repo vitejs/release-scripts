@@ -26,12 +26,12 @@
     "release": "tnode scripts/release.ts"
   },
   "dependencies": {
-    "execa": "^8.0.1",
     "mri": "^1.2.0",
     "picocolors": "^1.1.1",
     "prompts": "^2.4.2",
     "publint": "^0.3.2",
-    "semver": "^7.6.3"
+    "semver": "^7.6.3",
+    "tinyexec": "^0.3.2"
   },
   "devDependencies": {
     "@arnaud-barre/tnode": "^0.24.0",

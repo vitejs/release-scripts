@@ -1,8 +1,11 @@
 import { writeFileSync, readFileSync } from "node:fs";
 import path from "node:path";
 import colors from "picocolors";
-import type { Options as ExecaOptions, ExecaReturnValue } from "execa";
-import { execa } from "execa";
+import type {
+  Options as TinyExecOptions,
+  Result as TinyExecResult,
+} from "tinyexec";
+import { exec } from "tinyexec";
 import type { ReleaseType } from "semver";
 import semver from "semver";
 import mri from "mri";
@@ -38,15 +41,22 @@ export function getPackageInfo(
 export async function run(
   bin: string,
   args: string[],
-  opts: ExecaOptions = {},
-): Promise<ExecaReturnValue> {
-  return execa(bin, args, { stdio: "inherit", ...opts });
+  opts: Partial<TinyExecOptions> = {},
+): Promise<TinyExecResult> {
+  return exec(bin, args, {
+    nodeOptions: {
+      stdio: "inherit",
+      ...opts.nodeOptions,
+    },
+    throwOnError: true,
+    ...opts,
+  });
 }
 
 export async function dryRun(
   bin: string,
   args: string[],
-  opts?: ExecaOptions,
+  opts?: Partial<TinyExecOptions>,
 ): Promise<void> {
   return console.log(
     colors.blue(`[dryrun] ${bin} ${args.join(" ")}`),
@@ -151,7 +161,9 @@ export async function publishPackage(
     publicArgs.push(`--no-git-checks`);
   }
   await runIfNotDry(packageManager, publicArgs, {
-    cwd: pkgDir,
+    nodeOptions: {
+      cwd: pkgDir,
+    },
   });
 }
 
@@ -159,8 +171,13 @@ export async function getActiveVersion(
   npmName: string,
 ): Promise<string | undefined> {
   try {
-    return (await run("npm", ["info", npmName, "version"], { stdio: "pipe" }))
-      .stdout;
+    return (
+      await run("npm", ["info", npmName, "version"], {
+        nodeOptions: {
+          stdio: "pipe",
+        },
+      })
+    ).stdout;
   } catch (e: any) {
     // Not published yet
     if (e.stderr.startsWith("npm ERR! code E404")) return;
