@@ -26,7 +26,9 @@ export const publish: typeof def = async ({
   if (version.startsWith("v")) version = version.slice(1);
 
   if (pkgName === undefined)
-    throw new Error(`Package name should be specified in tag "${tag}" when defaultPackage is not set`);
+    throw new Error(
+      `Package name should be specified in tag "${tag}" when defaultPackage is not set`,
+    );
 
   const { pkg, pkgDir } = getPackageInfo(pkgName, getPkgDir);
   if (pkg.version !== version)
