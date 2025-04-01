@@ -1,5 +1,5 @@
 export declare function publish(options: {
-  defaultPackage: string;
+  defaultPackage?: string;
   getPkgDir?: (pkg: string) => string;
   /**
    * Enables npm package provenance https://docs.npmjs.com/generating-provenance-statements
