@@ -30,17 +30,17 @@
     "mri": "^1.2.0",
     "picocolors": "^1.1.1",
     "prompts": "^2.4.2",
-    "publint": "^0.3.2",
-    "semver": "^7.6.3"
+    "publint": "^0.3.12",
+    "semver": "^7.7.2"
   },
   "devDependencies": {
-    "@arnaud-barre/tnode": "^0.24.0",
-    "@types/node": "^22.10.9",
+    "@arnaud-barre/tnode": "^0.25.0",
+    "@types/node": "^22.15.33",
     "@types/prompts": "^2.4.9",
-    "@types/semver": "^7.5.8",
+    "@types/semver": "^7.7.0",
     "esbuild": "^0.24.2",
-    "prettier": "^3.4.2",
-    "typescript": "^5.7.3"
+    "prettier": "^3.6.2",
+    "typescript": "^5.8.3"
   },
   "packageManager": "pnpm@10.12.4"
 }
