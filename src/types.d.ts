@@ -1,3 +1,10 @@
+export declare function generateChangelog(options: {
+  /** @example () => `packages/${pkgName}` */
+  getPkgDir: () => string;
+  /** @example `${pkgName}@` */
+  tagPrefix?: string;
+}): Promise<void>;
+
 export declare function publish(options: {
   defaultPackage?: string;
   getPkgDir?: (pkg: string) => string;
