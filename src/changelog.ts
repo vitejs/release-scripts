@@ -40,16 +40,27 @@ export const generateChangelog: typeof def = async ({
 {{~#if isPatch~}} </small> {{~/if}}
 `.trim();
   preset.writer.mainTemplate = `
+{{> header}}
 {{#if noteGroups}}
 {{#each noteGroups}}
+
 ### ⚠ {{title}}
 
 {{#each notes}}
-* {{#if commit.scope}}**{{commit.scope}}:** {{/if}}{{text}}
-  {{#if commit.hash}}([{{commit.shortHash}}](https://github.com/{{@root.owner}}/{{@root.repository}}/commit/{{commit.hash}})){{/if}}
+* {{#if commit.scope}}**{{commit.scope}}:** {{/if}}{{text}}{{#if commit.hash}}([{{commit.shortHash}}](https://github.com/{{@root.owner}}/{{@root.repository}}/commit/{{commit.hash}})){{/if}}
 {{/each}}
 {{/each}}
-{{/if}}\n`.trim();
+{{/if}}
+{{#each commitGroups}}
+
+{{#if title}}
+### {{title}}
+
+{{/if}}
+{{#each commits}}
+{{> commit root=@root}}
+{{/each}}
+{{/each}}\n`.trim();
 
   const pkgDir = getPkgDir();
 
