@@ -47,7 +47,7 @@ export const generateChangelog: typeof def = async ({
 ### ⚠ {{title}}
 
 {{#each notes}}
-* {{#if commit.scope}}**{{commit.scope}}:** {{/if}}{{text}}{{#if commit.hash}}([{{commit.shortHash}}](https://github.com/{{@root.owner}}/{{@root.repository}}/commit/{{commit.hash}})){{/if}}
+* {{#if commit.scope}}**{{commit.scope}}:** {{/if}}{{commit.subject}} {{#if commit.hash}}([{{commit.shortHash}}](https://github.com/{{@root.owner}}/{{@root.repository}}/commit/{{commit.hash}})){{/if}}
 {{/each}}
 {{/each}}
 {{/if}}
