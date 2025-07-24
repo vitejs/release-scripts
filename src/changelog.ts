@@ -39,7 +39,8 @@ export const generateChangelog: typeof def = async ({
 {{~/if}}
 {{~#if isPatch~}} </small> {{~/if}}
 `.trim();
-  preset.writer.mainTemplate = `
+  preset.writer.mainTemplate =
+    `
 {{> header}}
 {{#if noteGroups}}
 {{#each noteGroups}}
@@ -60,7 +61,7 @@ export const generateChangelog: typeof def = async ({
 {{#each commits}}
 {{> commit root=@root}}
 {{/each}}
-{{/each}}`.trim() + '\n';
+{{/each}}`.trim() + "\n";
 
   const pkgDir = getPkgDir();
 
