@@ -60,7 +60,7 @@ export const generateChangelog: typeof def = async ({
 {{#each commits}}
 {{> commit root=@root}}
 {{/each}}
-{{/each}}\n`.trim();
+{{/each}}`.trim() + '\n';
 
   const pkgDir = getPkgDir();
 
