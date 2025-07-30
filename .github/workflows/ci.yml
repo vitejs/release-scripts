@@ -22,4 +22,8 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: "**/pnpm-lock.yaml"
       - run: pnpm install --frozen-lockfile --prefer-offline
+      # Setup git user for commit operations in tests
+      - run: |
+          git config --global user.email "test@example.com"
+          git config --global user.name "test"
       - run: pnpm qa
