@@ -4,8 +4,15 @@ import { createFixture, type FileTree } from "fs-fixture";
 import { execa } from "execa";
 import { generateChangelog } from "../src/changelog.ts";
 
-async function createProjectFixture(source: FileTree) {
-  const fixture = await createFixture(source);
+async function createProjectFixture(source?: FileTree) {
+  const fixture = await createFixture({
+    "package.json": JSON.stringify({
+      name: "test-project",
+      version: "1.0.0",
+      private: true,
+    }),
+    ...source,
+  });
   onTestFinished(() => fixture.rm());
 
   const initialCwd = process.cwd();
@@ -39,7 +46,7 @@ async function updatePackageJsonVersion(version: string) {
 
 async function initChangelog() {
   await gitCommit("chore: initial commit");
-  await generateChangelogForRelease()
+  await generateChangelogForRelease();
 }
 
 async function generateChangelogForRelease() {
@@ -68,26 +75,14 @@ async function readChangelog() {
 }
 
 it("generates a new changelog for empty project", async () => {
-  const fixture = await createProjectFixture({
-    "package.json": JSON.stringify({
-      name: "test-project",
-      version: "1.0.0",
-      private: true,
-    }),
-  });
+  await createProjectFixture();
   await gitCommit("chore: initial commit");
   await generateChangelogForRelease();
   expect(await readChangelog()).toMatchSnapshot();
 });
 
 it("generates a changelog with commits", async () => {
-  const fixture = await createProjectFixture({
-    "package.json": JSON.stringify({
-      name: "test-project",
-      version: "1.0.0",
-      private: true,
-    }),
-  });
+  await createProjectFixture();
   await initChangelog();
 
   await gitCommit("fix: fix a bug (#1)");
@@ -102,13 +97,7 @@ it("generates a changelog with commits", async () => {
 });
 
 it("generates a changelog with breaking changes", async () => {
-  const fixture = await createProjectFixture({
-    "package.json": JSON.stringify({
-      name: "test-project",
-      version: "1.0.0",
-      private: true,
-    }),
-  });
+  await createProjectFixture();
   await initChangelog();
   await gitCommit("feat!: introduce breaking change");
   await gitCommit("fix: fix a bug (#1)");
