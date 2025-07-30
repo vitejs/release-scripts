@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`generates a changelog with breaking changes 1`] = `
-"## 2.0.0 (xxx)
+"## [2.0.0](https://github.com/vitejs/test/compare/v1.0.0...v2.0.0) (xxx)
 ### ⚠ BREAKING CHANGES
 
 * introduce breaking change ([xxx](https://github.com/vitejs/test/commit/xxx))
@@ -13,24 +13,22 @@ exports[`generates a changelog with breaking changes 1`] = `
 ### Bug Fixes
 
 * fix a bug ([#1](https://github.com/vitejs/test/issues/1)) ([xxx](https://github.com/vitejs/test/commit/xxx))
-
+## 1.0.0 (xxx)
 ### Miscellaneous Chores
 
 * initial commit ([xxx](https://github.com/vitejs/test/commit/xxx))
-
 "
 `;
 
 exports[`generates a changelog with commits 1`] = `
-"## <small>1.0.1 (xxx)</small>
+"## <small>[1.0.1](https://github.com/vitejs/test/compare/v1.0.0...v1.0.1) (xxx)</small>
 ### Bug Fixes
 
 * fix a bug ([#1](https://github.com/vitejs/test/issues/1)) ([xxx](https://github.com/vitejs/test/commit/xxx))
-
+## 1.0.0 (xxx)
 ### Miscellaneous Chores
 
 * initial commit ([xxx](https://github.com/vitejs/test/commit/xxx))
-
 "
 `;
 
@@ -39,16 +37,14 @@ exports[`generates a changelog with commits 2`] = `
 ### Features
 
 * add new feature ([xxx](https://github.com/vitejs/test/commit/xxx))
-
-## <small>1.0.1 (xxx)</small>
+## <small>[1.0.1](https://github.com/vitejs/test/compare/v1.0.0...v1.0.1) (xxx)</small>
 ### Bug Fixes
 
 * fix a bug ([#1](https://github.com/vitejs/test/issues/1)) ([xxx](https://github.com/vitejs/test/commit/xxx))
-
+## 1.0.0 (xxx)
 ### Miscellaneous Chores
 
 * initial commit ([xxx](https://github.com/vitejs/test/commit/xxx))
-
 "
 `;
 
@@ -57,6 +53,5 @@ exports[`generates a new changelog for empty project 1`] = `
 ### Miscellaneous Chores
 
 * initial commit ([xxx](https://github.com/vitejs/test/commit/xxx))
-
 "
 `;

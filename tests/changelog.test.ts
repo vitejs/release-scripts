@@ -39,6 +39,7 @@ async function updatePackageJsonVersion(version: string) {
 
 async function initChangelog() {
   await gitCommit("chore: initial commit");
+  await generateChangelogForRelease()
 }
 
 async function generateChangelogForRelease() {
