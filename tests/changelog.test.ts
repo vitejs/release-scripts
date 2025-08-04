@@ -66,11 +66,11 @@ async function readChangelog() {
   return (
     changelog
       // Normalize date
-      .replace(/\d{4}-\d{2}-\d{2}/g, "xxx")
+      .replace(/\d{4}-\d{2}-\d{2}/g, "yyyy-mm-dd")
       // Normalize short commit hashes
-      .replace(/\[[a-z0-9]{7}\]/g, "[xxx]")
+      .replace(/\[[a-z0-9]{7}\]/g, `[${"x".repeat(7)}]`)
       // Normalize full commit hashes
-      .replace(/\/[a-z0-9]{40}\)/g, "/xxx)")
+      .replace(/\/[a-z0-9]{40}\)/g, `/${"x".repeat(40)})`)
   );
 }
 
