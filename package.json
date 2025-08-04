@@ -20,9 +20,10 @@
   },
   "scripts": {
     "build": "tnode scripts/build.ts",
+    "test": "vitest",
     "prettier": "pnpm prettier-ci --write",
     "prettier-ci": "prettier --cache --ignore-path=.gitignore --check '**/*.{ts,json,md,yml}'",
-    "qa": "tsc && pnpm prettier-ci && pnpm build",
+    "qa": "tsc && pnpm prettier-ci && pnpm build && vitest run",
     "release": "tnode scripts/release.ts"
   },
   "dependencies": {
@@ -41,8 +42,10 @@
     "@types/prompts": "^2.4.9",
     "@types/semver": "^7.7.0",
     "esbuild": "^0.25.8",
+    "fs-fixture": "^2.8.1",
     "prettier": "^3.6.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
   },
   "packageManager": "pnpm@10.13.1"
 }

@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import path from "node:path";
 import { ConventionalChangelog, type Preset } from "conventional-changelog";
 import createPreset, {
   DEFAULT_COMMIT_TYPES,
@@ -65,18 +66,19 @@ export const generateChangelog: typeof def = async ({
 
   const pkgDir = getPkgDir();
 
-  const generator = new ConventionalChangelog()
-    .readPackage(`${pkgDir}/package.json`)
+  const generator = new ConventionalChangelog(pkgDir)
+    .readPackage()
     .config(preset)
-    .options({ releaseCount: 1 })
-    .commits({ path: pkgDir });
+    .options({ releaseCount: 1 });
   if (tagPrefix) {
     generator.tags({ prefix: tagPrefix });
   }
 
-  const originalChangelog = fs.readFileSync(`${pkgDir}/CHANGELOG.md`, "utf-8");
+  const originalChangelog = fs.existsSync(path.join(pkgDir, "CHANGELOG.md"))
+    ? fs.readFileSync(path.join(pkgDir, "CHANGELOG.md"), "utf-8")
+    : "";
 
-  const writeStream = fs.createWriteStream(`${pkgDir}/CHANGELOG.md`);
+  const writeStream = fs.createWriteStream(path.join(pkgDir, "CHANGELOG.md"));
   for await (const chunk of generator.write()) {
     writeStream.write(chunk);
   }
