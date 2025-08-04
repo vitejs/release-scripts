@@ -66,11 +66,10 @@ export const generateChangelog: typeof def = async ({
 
   const pkgDir = getPkgDir();
 
-  const generator = new ConventionalChangelog()
-    .readPackage(path.join(pkgDir, "package.json"))
+  const generator = new ConventionalChangelog(pkgDir)
+    .readPackage()
     .config(preset)
-    .options({ releaseCount: 1 })
-    .commits({ path: pkgDir });
+    .options({ releaseCount: 1 });
   if (tagPrefix) {
     generator.tags({ prefix: tagPrefix });
   }
