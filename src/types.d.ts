@@ -1,5 +1,12 @@
+export declare function generateChangelog(options: {
+  /** @example () => `packages/${pkgName}` */
+  getPkgDir: () => string;
+  /** @example `${pkgName}@` */
+  tagPrefix?: string;
+}): Promise<void>;
+
 export declare function publish(options: {
-  defaultPackage: string;
+  defaultPackage?: string;
   getPkgDir?: (pkg: string) => string;
   /**
    * Enables npm package provenance https://docs.npmjs.com/generating-provenance-statements

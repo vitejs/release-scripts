@@ -108,7 +108,7 @@ export const release: typeof def = async ({
     step("\nCommitting changes...");
     await runIfNotDry("git", ["add", "-A"]);
     await runIfNotDry("git", ["commit", "-m", `release: ${tag}`]);
-    await runIfNotDry("git", ["tag", tag]);
+    await runIfNotDry("git", ["tag", "-a", "-m", tag, tag]);
   } else {
     console.log("No changes to commit.");
     return;

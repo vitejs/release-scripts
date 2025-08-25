@@ -171,16 +171,20 @@ export async function getActiveVersion(
   npmName: string,
 ): Promise<string | undefined> {
   try {
-    return (
-      await run("npm", ["info", npmName, "version"], {
-        nodeOptions: {
-          stdio: "pipe",
-        },
-      })
-    ).stdout;
+    const { stdout } = await run(
+      "npm",
+      ["info", npmName, "version", "--json"],
+      { nodeOptions: { stdio: "pipe" } },
+    );
+    return JSON.parse(stdout);
   } catch (e: any) {
     // Not published yet
-    if (e.stderr.startsWith("npm ERR! code E404")) return;
+    if (e.stdout) {
+      const stdout = JSON.parse(e.stdout);
+      if (stdout.error.code === "E404") {
+        return;
+      }
+    }
     throw e;
   }
 }

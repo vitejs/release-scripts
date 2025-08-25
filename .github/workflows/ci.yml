@@ -6,6 +6,7 @@ on:
   pull_request:
     branches:
       - main
+permissions: {}
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -13,12 +14,16 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
       - run: corepack enable
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: "pnpm"
           cache-dependency-path: "**/pnpm-lock.yaml"
       - run: pnpm install --frozen-lockfile --prefer-offline
+      # Setup git user for commit operations in tests
+      - run: |
+          git config --global user.email "test@example.com"
+          git config --global user.name "test"
       - run: pnpm qa
