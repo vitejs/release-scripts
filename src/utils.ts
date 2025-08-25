@@ -161,9 +161,7 @@ export async function publishPackage(
     publicArgs.push(`--no-git-checks`);
   }
   await runIfNotDry(packageManager, publicArgs, {
-    nodeOptions: {
-      cwd: pkgDir,
-    },
+    nodeOptions: { cwd: pkgDir },
   });
 }
 
