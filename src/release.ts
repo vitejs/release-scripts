@@ -101,7 +101,9 @@ export const release: typeof def = async ({
   updateVersion(pkgPath, targetVersion);
   await generateChangelog(selectedPkg, targetVersion);
 
-  const { stdout } = await run("git", ["diff"], { stdio: "pipe" });
+  const { stdout } = await run("git", ["diff"], {
+    nodeOptions: { stdio: "pipe" },
+  });
   if (stdout) {
     step("\nCommitting changes...");
     await runIfNotDry("git", ["add", "-A"]);

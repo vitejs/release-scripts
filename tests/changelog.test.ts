@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { it, expect, onTestFinished } from "vitest";
 import { createFixture, type FileTree } from "fs-fixture";
-import { execa } from "execa";
+import { exec } from "tinyexec";
 import { generateChangelog } from "../src/changelog.ts";
 
 async function createProjectFixture(source?: FileTree) {
@@ -16,11 +16,11 @@ async function createProjectFixture(source?: FileTree) {
   });
   onTestFinished(() => fixture.rm());
 
-  await execa("git", ["init"], { cwd: fixture.path });
-  await execa(
+  await exec("git", ["init"], { nodeOptions: { cwd: fixture.path } });
+  await exec(
     "git",
     ["remote", "add", "origin", "https://github.com/vitejs/test.git"],
-    { cwd: fixture.path },
+    { nodeOptions: { cwd: fixture.path } },
   );
 
   return fixture;
@@ -32,8 +32,8 @@ async function gitCommit(cwd: string, message: string) {
     path.join(cwd, "dummy.txt"),
     Math.random().toString(36).substring(2, 15),
   );
-  await execa("git", ["add", "."], { cwd });
-  await execa("git", ["commit", "-m", message], { cwd });
+  await exec("git", ["add", "."], { nodeOptions: { cwd } });
+  await exec("git", ["commit", "-m", message], { nodeOptions: { cwd } });
 }
 
 async function updatePackageJsonVersion(cwd: string, version: string) {
@@ -57,7 +57,7 @@ async function generateChangelogForRelease(cwd: string) {
     await fs.readFile(path.join(cwd, "./package.json"), "utf8"),
   ).version;
   const tag = `v${version}`;
-  await execa("git", ["tag", "-a", "-m", tag, tag], { cwd });
+  await exec("git", ["tag", "-a", "-m", tag, tag], { nodeOptions: { cwd } });
 }
 
 async function readChangelog(cwd: string) {
