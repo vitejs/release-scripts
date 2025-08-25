@@ -44,12 +44,12 @@ export async function run(
   opts: Partial<TinyExecOptions> = {},
 ): Promise<TinyExecResult> {
   return exec(bin, args, {
+    throwOnError: true,
+    ...opts,
     nodeOptions: {
       stdio: "inherit",
       ...opts.nodeOptions,
     },
-    throwOnError: true,
-    ...opts,
   });
 }
 
