@@ -3,17 +3,11 @@
   "version": "1.6.0",
   "description": "@vitejs release scripts",
   "license": "MIT",
-  "main": "dist/index.js",
   "type": "module",
   "files": [
     "dist"
   ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
-  },
+  "exports": "./dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vitejs/release-scripts.git"
