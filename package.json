@@ -29,12 +29,12 @@
   "dependencies": {
     "conventional-changelog": "^7.1.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
-    "execa": "^8.0.1",
     "mri": "^1.2.0",
     "picocolors": "^1.1.1",
     "prompts": "^2.4.2",
     "publint": "^0.3.12",
-    "semver": "^7.7.2"
+    "semver": "^7.7.2",
+    "tinyexec": "^0.3.2"
   },
   "devDependencies": {
     "@arnaud-barre/tnode": "^0.25.0",
