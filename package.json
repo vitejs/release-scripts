@@ -28,7 +28,7 @@
     "prompts": "^2.4.2",
     "publint": "^0.3.12",
     "semver": "^7.7.2",
-    "tinyexec": "^0.3.2"
+    "tinyexec": "^1.0.1"
   },
   "devDependencies": {
     "@arnaud-barre/tnode": "^0.25.0",
