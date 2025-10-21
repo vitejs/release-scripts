@@ -26,13 +26,13 @@
     "mri": "^1.2.0",
     "picocolors": "^1.1.1",
     "prompts": "^2.4.2",
-    "publint": "^0.3.14",
+    "publint": "^0.3.15",
     "semver": "^7.7.3",
     "tinyexec": "^1.0.1"
   },
   "devDependencies": {
     "@arnaud-barre/tnode": "^0.25.0",
-    "@types/node": "^22.18.10",
+    "@types/node": "^22.18.12",
     "@types/prompts": "^2.4.9",
     "@types/semver": "^7.7.1",
     "esbuild": "^0.25.11",
