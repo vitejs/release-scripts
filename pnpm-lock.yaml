@@ -49,8 +49,8 @@ importers:
         specifier: ^0.25.11
         version: 0.25.11
       fs-fixture:
-        specifier: ^2.9.0
-        version: 2.9.0
+        specifier: ^2.10.0
+        version: 2.10.0
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
@@ -492,8 +492,8 @@ packages:
       picomatch:
         optional: true
 
-  fs-fixture@2.9.0:
-    resolution: {integrity: sha512-I/DNkzRfL71uabv3270h+lLOlJrUbQDHXb6JZxN8cgiFn0pi0dCE+etE8pzCvMuguSq34ClGXInhoaSW+1RZpw==}
+  fs-fixture@2.10.0:
+    resolution: {integrity: sha512-B78OVG6XIYLKtNA7fllwLkBEsDwXg3n1Gjx+XLprA/msXfhNiBCBcfxrujNa4bre8R6qU/bsAz7Fg4qee7O6fg==}
     engines: {node: '>=18.0.0'}
 
   fsevents@2.3.3:
@@ -1103,7 +1103,7 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.3
 
-  fs-fixture@2.9.0: {}
+  fs-fixture@2.10.0: {}
 
   fsevents@2.3.3:
     optional: true
