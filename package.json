@@ -28,18 +28,18 @@
     "prompts": "^2.4.2",
     "publint": "^0.3.15",
     "semver": "^7.7.3",
-    "tinyexec": "^1.0.1"
+    "tinyexec": "^1.0.2"
   },
   "devDependencies": {
     "@arnaud-barre/tnode": "^0.25.0",
-    "@types/node": "^22.18.12",
+    "@types/node": "^22.19.1",
     "@types/prompts": "^2.4.9",
     "@types/semver": "^7.7.1",
-    "esbuild": "^0.25.11",
-    "fs-fixture": "^2.10.0",
-    "prettier": "^3.6.2",
+    "esbuild": "^0.27.1",
+    "fs-fixture": "^2.11.0",
+    "prettier": "^3.7.4",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.4"
+    "vitest": "^4.0.15"
   },
-  "packageManager": "pnpm@10.19.0"
+  "packageManager": "pnpm@10.25.0"
 }
