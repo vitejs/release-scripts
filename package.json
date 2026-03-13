@@ -21,25 +21,25 @@
     "release": "tnode scripts/release.ts"
   },
   "dependencies": {
-    "conventional-changelog": "^7.1.1",
-    "conventional-changelog-conventionalcommits": "^9.1.0",
+    "conventional-changelog": "^7.2.0",
+    "conventional-changelog-conventionalcommits": "^9.3.0",
     "mri": "^1.2.0",
     "picocolors": "^1.1.1",
     "prompts": "^2.4.2",
-    "publint": "^0.3.17",
+    "publint": "^0.3.18",
     "semver": "^7.7.4",
-    "tinyexec": "^1.0.2"
+    "tinyexec": "^1.0.4"
   },
   "devDependencies": {
     "@arnaud-barre/tnode": "^0.25.0",
-    "@types/node": "^24.10.15",
+    "@types/node": "^24.12.0",
     "@types/prompts": "^2.4.9",
     "@types/semver": "^7.7.1",
-    "esbuild": "^0.27.3",
+    "esbuild": "^0.27.4",
     "fs-fixture": "^2.11.0",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.18"
+    "vitest": "^4.1.0"
   },
-  "packageManager": "pnpm@10.30.3"
+  "packageManager": "pnpm@10.32.1"
 }
