@@ -17,21 +17,16 @@ async function createProjectFixture(source?: FileTree) {
   onTestFinished(() => fixture.rm());
 
   await exec("git", ["init"], { nodeOptions: { cwd: fixture.path } });
-  await exec(
-    "git",
-    ["remote", "add", "origin", "https://github.com/vitejs/test.git"],
-    { nodeOptions: { cwd: fixture.path } },
-  );
+  await exec("git", ["remote", "add", "origin", "https://github.com/vitejs/test.git"], {
+    nodeOptions: { cwd: fixture.path },
+  });
 
   return fixture;
 }
 
 async function gitCommit(cwd: string, message: string) {
   // Write random text to file to allow conventional-changelog to detect commit
-  await fs.writeFile(
-    path.join(cwd, "dummy.txt"),
-    Math.random().toString(36).substring(2, 15),
-  );
+  await fs.writeFile(path.join(cwd, "dummy.txt"), Math.random().toString(36).substring(2, 15));
   await exec("git", ["add", "."], { nodeOptions: { cwd } });
   await exec("git", ["commit", "-m", message], { nodeOptions: { cwd } });
 }
@@ -53,9 +48,7 @@ async function generateChangelogForRelease(cwd: string) {
 
   // Tag the version so conventional-changelog tracks this as the last release
   // and won't track this commit for the next release.
-  const version = JSON.parse(
-    await fs.readFile(path.join(cwd, "./package.json"), "utf8"),
-  ).version;
+  const version = JSON.parse(await fs.readFile(path.join(cwd, "./package.json"), "utf8")).version;
   const tag = `v${version}`;
   await exec("git", ["tag", "-a", "-m", tag, tag], { nodeOptions: { cwd } });
 }

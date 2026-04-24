@@ -3,21 +3,20 @@
   "version": "1.7.0",
   "description": "@vitejs release scripts",
   "license": "MIT",
-  "type": "module",
-  "files": [
-    "dist"
-  ],
-  "exports": "./dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vitejs/release-scripts.git"
   },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "exports": "./dist/index.js",
   "scripts": {
     "build": "rolldown -c",
     "test": "vitest",
-    "prettier": "pnpm prettier-ci --write",
-    "prettier-ci": "prettier --cache --ignore-path=.gitignore --check '**/*.{ts,json,md,yml}'",
-    "qa": "tsc && pnpm prettier-ci && pnpm build && vitest run",
+    "format": "oxfmt",
+    "qa": "tsc && pnpm format --check && pnpm build && vitest run",
     "release": "node scripts/release.ts"
   },
   "dependencies": {
@@ -35,7 +34,7 @@
     "@types/prompts": "^2.4.9",
     "@types/semver": "^7.7.1",
     "fs-fixture": "^2.13.0",
-    "prettier": "^3.8.3",
+    "oxfmt": "^0.46.0",
     "rolldown": "^1.0.0-rc.16",
     "typescript": "^6.0.3",
     "vitest": "^4.1.5"

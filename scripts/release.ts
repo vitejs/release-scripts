@@ -6,11 +6,7 @@ release({
   packages: ["release-scripts"],
   toTag: (_, version) => `v${version}`,
   logChangelog: () =>
-    console.log(
-      execSync(
-        "git log $(git describe --tags --abbrev=0)..HEAD --oneline",
-      ).toString(),
-    ),
+    console.log(execSync("git log $(git describe --tags --abbrev=0)..HEAD --oneline").toString()),
   generateChangelog: () => {},
   getPkgDir: () => ".",
 });
