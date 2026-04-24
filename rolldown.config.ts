@@ -9,9 +9,7 @@ export default defineConfig({
     dir: "dist",
     cleanDir: true,
   },
-  external: Object.keys(pkg.dependencies).map(
-    (name) => new RegExp(`^${name}(?:$|/)`),
-  ),
+  external: Object.keys(pkg.dependencies).map((name) => new RegExp(`^${name}(?:$|/)`)),
   plugins: [
     {
       name: "copy-types",
