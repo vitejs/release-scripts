@@ -15,9 +15,8 @@
   "scripts": {
     "build": "node scripts/build.ts",
     "test": "vitest",
-    "prettier": "pnpm prettier-ci --write",
-    "prettier-ci": "prettier --cache --ignore-path=.gitignore --check '**/*.{ts,json,md,yml}'",
-    "qa": "tsc && pnpm prettier-ci && pnpm build && vitest run",
+    "format": "oxfmt",
+    "qa": "tsc && pnpm format && pnpm build && vitest run",
     "release": "node scripts/release.ts"
   },
   "dependencies": {
@@ -36,7 +35,7 @@
     "@types/semver": "^7.7.1",
     "esbuild": "^0.28.0",
     "fs-fixture": "^2.13.0",
-    "prettier": "^3.8.3",
+    "oxfmt": "^0.46.0",
     "typescript": "^6.0.3",
     "vitest": "^4.1.4"
   },
