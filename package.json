@@ -38,7 +38,7 @@
     "fs-fixture": "^2.13.0",
     "prettier": "^3.8.3",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.4"
+    "vitest": "^4.1.5"
   },
   "packageManager": "pnpm@10.33.0"
 }
