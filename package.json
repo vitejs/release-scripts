@@ -1,6 +1,6 @@
 {
   "name": "@vitejs/release-scripts",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "@vitejs release scripts",
   "license": "MIT",
   "repository": {
@@ -13,7 +13,7 @@
   "type": "module",
   "exports": "./dist/index.js",
   "scripts": {
-    "build": "node scripts/build.ts",
+    "build": "rolldown -c",
     "test": "vitest",
     "format": "oxfmt",
     "qa": "tsc && pnpm format && pnpm build && vitest run",
@@ -33,11 +33,11 @@
     "@types/node": "^24.12.2",
     "@types/prompts": "^2.4.9",
     "@types/semver": "^7.7.1",
-    "esbuild": "^0.28.0",
     "fs-fixture": "^2.13.0",
     "oxfmt": "^0.46.0",
+    "rolldown": "^1.0.0-rc.16",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.4"
+    "vitest": "^4.1.5"
   },
   "packageManager": "pnpm@10.33.0"
 }
