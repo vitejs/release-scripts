@@ -21,6 +21,8 @@ export declare function publish(options: {
 }): Promise<void>;
 
 export declare function release(options: {
+  /** @default 'vitejs' */
+  org?: string;
   repo: string;
   packages: string[];
   logChangelog: (pkg: string) => void | Promise<void>;
