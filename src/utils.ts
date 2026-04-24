@@ -7,7 +7,7 @@ import type {
 } from "tinyexec";
 import { exec } from "tinyexec";
 import type { ReleaseType } from "semver";
-import semver from "semver";
+import * as semver from "semver";
 import mri from "mri";
 
 export const args = mri(process.argv.slice(2));

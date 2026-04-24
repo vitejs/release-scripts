@@ -2,17 +2,18 @@
   "include": ["src", "scripts"],
   "compilerOptions": {
     /* Target node 16 */
-    "module": "ESNext",
+    "module": "nodenext",
     "lib": ["ES2021"],
     "target": "ES2021",
     "skipLibCheck": true,
 
     /* Transpile with esbuild */
-    "moduleResolution": "bundler",
+    "moduleResolution": "nodenext",
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
+    "erasableSyntaxOnly": true,
 
     /* Linting */
     "strict": true,
