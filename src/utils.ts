@@ -1,10 +1,7 @@
 import { writeFileSync, readFileSync } from "node:fs";
 import path from "node:path";
 import colors from "picocolors";
-import type {
-  Options as TinyExecOptions,
-  Result as TinyExecResult,
-} from "tinyexec";
+import type { Options as TinyExecOptions, Result as TinyExecResult } from "tinyexec";
 import { exec } from "tinyexec";
 import type { ReleaseType } from "semver";
 import * as semver from "semver";
@@ -58,10 +55,7 @@ export async function dryRun(
   args: string[],
   opts?: Partial<TinyExecOptions>,
 ): Promise<void> {
-  return console.log(
-    colors.blue(`[dryrun] ${bin} ${args.join(" ")}`),
-    opts || "",
-  );
+  return console.log(colors.blue(`[dryrun] ${bin} ${args.join(" ")}`), opts || "");
 }
 
 export const runIfNotDry = isDryRun ? dryRun : run;
@@ -165,15 +159,11 @@ export async function publishPackage(
   });
 }
 
-export async function getActiveVersion(
-  npmName: string,
-): Promise<string | undefined> {
+export async function getActiveVersion(npmName: string): Promise<string | undefined> {
   try {
-    const { stdout } = await run(
-      "npm",
-      ["info", npmName, "version", "--json"],
-      { nodeOptions: { stdio: "pipe" } },
-    );
+    const { stdout } = await run("npm", ["info", npmName, "version", "--json"], {
+      nodeOptions: { stdio: "pipe" },
+    });
     return JSON.parse(stdout);
   } catch (e: any) {
     // Not published yet

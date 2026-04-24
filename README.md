@@ -12,15 +12,10 @@ release({
   repo: "release-scripts",
   // List of options. Choice will be available in following callback as `pkg`
   packages: ["release-scripts"],
-  toTag: (pkg, version) =>
-    pkg === "vite" ? `v${version}` : `${pkg}@${version}`,
+  toTag: (pkg, version) => (pkg === "vite" ? `v${version}` : `${pkg}@${version}`),
   // Not shared until we find a new changelog process
   logChangelog: (pkg) =>
-    console.log(
-      execSync(
-        "git log $(git describe --tags --abbrev=0)..HEAD --oneline",
-      ).toString(),
-    ),
+    console.log(execSync("git log $(git describe --tags --abbrev=0)..HEAD --oneline").toString()),
   generateChangelog: (pkg, version) => {},
   // Use getPkgDir when not using a monorepo. Default to `packages/${pkg}`
   getPkgDir: (pkg) => ".",

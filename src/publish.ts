@@ -1,11 +1,5 @@
 import * as semver from "semver";
-import {
-  args,
-  getActiveVersion,
-  getPackageInfo,
-  publishPackage,
-  step,
-} from "./utils.ts";
+import { args, getActiveVersion, getPackageInfo, publishPackage, step } from "./utils.ts";
 import type { publish as def } from "./types.d.ts";
 
 export const publish: typeof def = async ({

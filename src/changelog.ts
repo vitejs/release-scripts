@@ -7,10 +7,7 @@ import createPreset, {
 } from "conventional-changelog-conventionalcommits";
 import type { generateChangelog as def } from "./types.d.ts";
 
-export const generateChangelog: typeof def = async ({
-  getPkgDir,
-  tagPrefix,
-}) => {
+export const generateChangelog: typeof def = async ({ getPkgDir, tagPrefix }) => {
   const preset: Preset = await createPreset({
     types: DEFAULT_COMMIT_TYPES.map((t: any) => ({ ...t, hidden: false })),
   });
