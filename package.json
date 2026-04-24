@@ -13,7 +13,7 @@
     "url": "git+https://github.com/vitejs/release-scripts.git"
   },
   "scripts": {
-    "build": "node scripts/build.ts",
+    "build": "rolldown -c",
     "test": "vitest",
     "prettier": "pnpm prettier-ci --write",
     "prettier-ci": "prettier --cache --ignore-path=.gitignore --check '**/*.{ts,json,md,yml}'",
@@ -34,9 +34,9 @@
     "@types/node": "^24.12.2",
     "@types/prompts": "^2.4.9",
     "@types/semver": "^7.7.1",
-    "esbuild": "^0.28.0",
     "fs-fixture": "^2.13.0",
     "prettier": "^3.8.3",
+    "rolldown": "^1.0.0-rc.16",
     "typescript": "^6.0.3",
     "vitest": "^4.1.5"
   },
