@@ -16,7 +16,7 @@ import { publint } from "publint";
 import { formatMessage } from "publint/utils";
 
 export const release: typeof def = async ({
-  org = 'vitejs',
+  org = "vitejs",
   repo,
   packages,
   logChangelog,
