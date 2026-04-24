@@ -1,6 +1,6 @@
 import { copyFileSync, rmSync } from "node:fs";
 import { buildSync } from "esbuild";
-import pkg from "../package.json";
+import pkg from "../package.json" with { type: "json" };
 
 rmSync("dist", { force: true, recursive: true });
 

@@ -13,12 +13,12 @@
     "url": "git+https://github.com/vitejs/release-scripts.git"
   },
   "scripts": {
-    "build": "tnode scripts/build.ts",
+    "build": "node scripts/build.ts",
     "test": "vitest",
     "prettier": "pnpm prettier-ci --write",
     "prettier-ci": "prettier --cache --ignore-path=.gitignore --check '**/*.{ts,json,md,yml}'",
     "qa": "tsc && pnpm prettier-ci && pnpm build && vitest run",
-    "release": "tnode scripts/release.ts"
+    "release": "node scripts/release.ts"
   },
   "dependencies": {
     "conventional-changelog": "^7.2.0",
@@ -31,7 +31,6 @@
     "tinyexec": "^1.1.1"
   },
   "devDependencies": {
-    "@arnaud-barre/tnode": "^0.25.0",
     "@types/node": "^24.12.2",
     "@types/prompts": "^2.4.9",
     "@types/semver": "^7.7.1",

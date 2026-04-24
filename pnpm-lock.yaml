@@ -33,9 +33,6 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1
     devDependencies:
-      '@arnaud-barre/tnode':
-        specifier: ^0.25.0
-        version: 0.25.0
       '@types/node':
         specifier: ^24.12.2
         version: 24.12.2
@@ -62,10 +59,6 @@ importers:
         version: 4.1.4(@types/node@24.12.2)(vite@7.0.6(@types/node@24.12.2))
 
 packages:
-
-  '@arnaud-barre/tnode@0.25.0':
-    resolution: {integrity: sha512-biE/vNihcZJ3lfXzLaYWaJoaUIE2hLEriCUzuMB9esRAMBIK4eqxnWpVIn0vKxqBWwOIEhrvdOGXeBEr+fyoEg==}
-    hasBin: true
 
   '@conventional-changelog/git-client@2.6.0':
     resolution: {integrity: sha512-T+uPDciKf0/ioNNDpMGc8FDsehJClZP0yR3Q5MN6wE/Y/1QZ7F+80OgznnTCOlMEG4AV0LvH2UJi3C/nBnaBUg==}
@@ -916,10 +909,6 @@ packages:
     resolution: {integrity: sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==}
 
 snapshots:
-
-  '@arnaud-barre/tnode@0.25.0':
-    dependencies:
-      esbuild: 0.25.11
 
   '@conventional-changelog/git-client@2.6.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.3.0)':
     dependencies:
