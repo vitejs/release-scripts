@@ -16,7 +16,7 @@
     "build": "rolldown -c",
     "test": "vitest",
     "format": "oxfmt",
-    "qa": "tsc && pnpm format && pnpm build && vitest run",
+    "qa": "tsc && pnpm format --check && pnpm build && vitest run",
     "release": "node scripts/release.ts"
   },
   "dependencies": {
