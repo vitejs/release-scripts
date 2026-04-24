@@ -16,6 +16,7 @@ import { publint } from "publint";
 import { formatMessage } from "publint/utils";
 
 export const release: typeof def = async ({
+  org = "vitejs",
   repo,
   packages,
   logChangelog,
@@ -125,7 +126,7 @@ export const release: typeof def = async ({
       colors.green(
         `
 Pushed, publishing should starts shortly on CI.
-https://github.com/vitejs/${repo}/actions/workflows/publish.yml`,
+https://github.com/${org}/${repo}/actions/workflows/publish.yml`,
       ),
     );
   }
