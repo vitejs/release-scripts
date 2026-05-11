@@ -79,6 +79,6 @@ export const generateChangelog: typeof def = async ({ getPkgDir, tagPrefix }) =>
   for await (const chunk of generator.write()) {
     writeStream.write(chunk);
   }
-  writeStream.write('\n');
+  writeStream.write("\n");
   writeStream.write(originalChangelog);
 };
