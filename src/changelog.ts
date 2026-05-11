@@ -66,7 +66,8 @@ export const generateChangelog: typeof def = async ({ getPkgDir, tagPrefix }) =>
   const generator = new ConventionalChangelog(pkgDir)
     .readPackage()
     .config(preset)
-    .options({ releaseCount: 1 });
+    .options({ releaseCount: 1 })
+    .commits({ path: "." });
   if (tagPrefix) {
     generator.tags({ prefix: tagPrefix });
   }
