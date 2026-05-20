@@ -29,5 +29,3 @@ jobs:
       - run: pnpm install --frozen-lockfile --prefer-offline
       - run: pnpm build
       - run: node scripts/publish.ts "$GITHUB_REF_NAME"
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
