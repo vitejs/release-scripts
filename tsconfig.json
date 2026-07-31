@@ -6,6 +6,7 @@
     "lib": ["ES2021"],
     "target": "ES2021",
     "skipLibCheck": true,
+    "types": ["node"],
 
     /* Transpile with esbuild */
     "moduleResolution": "nodenext",
