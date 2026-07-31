@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import * as semver from "semver";
+import semver from "semver";
 import type { ReleaseType } from "semver";
 import { getReleaseTag } from "./detectRelease.ts";
 import { validatePublishVersion } from "./publish.ts";
