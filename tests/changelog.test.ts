@@ -123,7 +123,7 @@ describe("extractChangelogEntry", () => {
 
     expect(extractChangelogEntry({ changelogPath, version: "1.2.3" })).toBe(`### Features
 
-  * add a feature`);
+* add a feature`);
   });
 
   // plugin-react, plugin-react-swc
