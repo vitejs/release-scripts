@@ -110,15 +110,15 @@ describe("extractChangelogEntry", () => {
   it("extracts a conventional changelog entry", async () => {
     const changelogPath = await createChangelog(`# Changelog
 
-  ## [1.2.3](https://example.com/compare/v1.2.2...v1.2.3) (2026-07-30)
+## [1.2.3](https://example.com/compare/v1.2.2...v1.2.3) (2026-07-30)
 
-  ### Features
+### Features
 
-  * add a feature
+* add a feature
 
-  ## [1.2.2](https://example.com/compare/v1.2.1...v1.2.2) (2026-07-20)
+## [1.2.2](https://example.com/compare/v1.2.1...v1.2.2) (2026-07-20)
 
-  * older change
+* older change
   `);
 
     expect(extractChangelogEntry({ changelogPath, version: "1.2.3" })).toBe(`### Features
@@ -130,13 +130,13 @@ describe("extractChangelogEntry", () => {
   it("extracts a manually maintained changelog entry", async () => {
     const changelogPath = await createChangelog(`## Unreleased
 
-  ## 1.2.3 (2026-07-30)
+## 1.2.3 (2026-07-30)
 
-  - Fix a bug
+- Fix a bug
 
-  ## 1.2.2 (2026-07-20)
+## 1.2.2 (2026-07-20)
 
-  - Older fix
+- Older fix
   `);
 
     expect(extractChangelogEntry({ changelogPath, version: "1.2.3" })).toBe("- Fix a bug");
@@ -145,7 +145,7 @@ describe("extractChangelogEntry", () => {
   it("throws when a changelog entry is missing", async () => {
     const changelogPath = await createChangelog(`## 1.2.2 (2026-07-20)
 
-  - Older fix
+- Older fix
   `);
 
     expect(() => extractChangelogEntry({ changelogPath, version: "1.2.3" })).toThrow(
@@ -156,9 +156,9 @@ describe("extractChangelogEntry", () => {
   it("doesn't throw when a changelog entry is empty", async () => {
     const changelogPath = await createChangelog(`## 1.2.3 (2026-07-30)
 
-  ## 1.2.2 (2026-07-20)
+## 1.2.2 (2026-07-20)
 
-  - Older fix
+- Older fix
   `);
 
     expect(extractChangelogEntry({ changelogPath, version: "1.2.3" })).toBe("");
