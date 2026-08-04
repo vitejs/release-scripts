@@ -1,6 +1,6 @@
 # @vitejs/release-scripts
 
-This repo is used to share release & publish scripts for the org. Scripts should be executed from the workspace root via `tsx scripts/release.ts`
+This repo is used to share release & publish scripts for the org. Scripts should be executed from the workspace root via `node scripts/release.ts`
 
 ## prepareRelease
 
@@ -36,8 +36,7 @@ const release = detectReleaseCommit({
 });
 ```
 
-Use `extractChangelogEntry({ changelogPath, version })` to obtain the Markdown body for a
-GitHub release or release PR.
+Use `extractChangelogEntry({ changelogPath, version })` to obtain the Markdown body for a GitHub release or release PR.
 
 ## release
 
