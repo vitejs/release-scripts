@@ -1,0 +1,51 @@
+name: Open release PR
+description: Commit prepared release files and open a pull request
+
+inputs:
+  app-slug:
+    description: Slug of the GitHub App used to open the pull request
+    required: true
+  token:
+    description: GitHub App token with contents and pull request write access
+    required: true
+  package-path:
+    description: Path to the package to release
+    required: true
+  pr-body:
+    description: Pull request body
+    required: true
+  tag:
+    description: Release tag
+    required: true
+  version:
+    description: Release version
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Open release PR
+      shell: bash
+      env:
+        APP_SLUG: ${{ inputs.app-slug }}
+        GH_TOKEN: ${{ inputs.token }}
+        PACKAGE_NAME: ${{ inputs.package-name }}
+        PACKAGE_PATH: ${{ inputs.package-path }}
+        PR_BODY: ${{ inputs.pr-body }}
+        TAG: ${{ inputs.tag }}
+        VERSION: ${{ inputs.version }}
+      run: |
+        BRANCH="release-$PACKAGE_NAME-$VERSION-$GITHUB_RUN_ID"
+        BOT_ID="$(gh api "/users/$APP_SLUG%5Bbot%5D" --jq .id)"
+        git config user.name "$APP_SLUG[bot]"
+        git config user.email "$BOT_ID+$APP_SLUG[bot]@users.noreply.github.com"
+        git switch -c "$BRANCH"
+        git add "$PACKAGE_PATH"
+        git commit -m "release: $TAG"
+        git push -u "https://x-access-token:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git" HEAD
+        gh pr create \
+          --assignee "$GITHUB_ACTOR" \
+          --base main \
+          --head "$BRANCH" \
+          --title "release: $TAG" \
+          --body "$PR_BODY"
