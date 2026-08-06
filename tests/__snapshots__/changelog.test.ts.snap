@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`generates a changelog with breaking changes 1`] = `
+exports[`generateChangelog > generates a changelog with breaking changes 1`] = `
 "## [2.0.0](https://github.com/vitejs/test/compare/v1.0.0...v2.0.0) (yyyy-mm-dd)
 ### ⚠ BREAKING CHANGES
 
@@ -22,7 +22,7 @@ exports[`generates a changelog with breaking changes 1`] = `
 "
 `;
 
-exports[`generates a changelog with commits 1`] = `
+exports[`generateChangelog > generates a changelog with commits 1`] = `
 "## <small>[1.0.1](https://github.com/vitejs/test/compare/v1.0.0...v1.0.1) (yyyy-mm-dd)</small>
 ### Bug Fixes
 
@@ -36,7 +36,7 @@ exports[`generates a changelog with commits 1`] = `
 "
 `;
 
-exports[`generates a changelog with commits 2`] = `
+exports[`generateChangelog > generates a changelog with commits 2`] = `
 "## [1.1.0](https://github.com/vitejs/test/compare/v1.0.1...v1.1.0) (yyyy-mm-dd)
 ### Features
 
@@ -55,7 +55,7 @@ exports[`generates a changelog with commits 2`] = `
 "
 `;
 
-exports[`generates a new changelog for empty project 1`] = `
+exports[`generateChangelog > generates a new changelog for empty project 1`] = `
 "## 1.0.0 (yyyy-mm-dd)
 ### Miscellaneous Chores
 

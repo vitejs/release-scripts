@@ -1,6 +1,42 @@
 # @vitejs/release-scripts
 
-This repo is used to share release & publish scripts for the org. Scripts should be executed from the workspace root via `tsx scripts/release.ts`
+This repo is used to share release & publish scripts for the org. Scripts should be executed from the workspace root via `node scripts/release.ts`
+
+## prepareRelease
+
+`prepareRelease` updates a package manifest without committing, tagging, or pushing. This is intended for release-PR workflows.
+
+```ts
+import { generateChangelog, prepareRelease } from "@vitejs/release-scripts";
+
+await prepareRelease({
+  pkg: "my-package",
+  release: process.env.RELEASE ?? "next",
+  generateChangelog: async (pkg) => {
+    await generateChangelog({
+      getPkgDir: () => `packages/${pkg}`,
+      tagPrefix: `${pkg}@`,
+    });
+  },
+});
+```
+
+`prepareRelease` returns the package, previous and next versions, and release tag. Pass `toTag`
+when a repository does not use the default `<package>@<version>` convention.
+
+## detectReleaseCommit
+
+```ts
+import { detectReleaseCommit } from "@vitejs/release-scripts";
+
+const release = detectReleaseCommit({
+  subject: "release: v1.2.3 (#42)",
+  packages: ["vite", "create-vite"],
+  defaultPackage: "vite",
+});
+```
+
+Use `extractChangelogEntry({ changelogPath, version })` to obtain the Markdown body for a GitHub release or release PR.
 
 ## release
 

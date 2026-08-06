@@ -5,7 +5,10 @@ import createPreset, {
   DEFAULT_COMMIT_TYPES,
   formatCommitUrl,
 } from "conventional-changelog-conventionalcommits";
-import type { generateChangelog as def } from "./types.d.ts";
+import type {
+  extractChangelogEntry as extractChangelogEntryDef,
+  generateChangelog as generateChangelogDef,
+} from "./types.d.ts";
 import {
   heading,
   link,
@@ -38,7 +41,22 @@ interface ExtendedCommitNote extends CommitNote {
   };
 }
 
-export const generateChangelog: typeof def = async ({ getPkgDir, tagPrefix }) => {
+export const extractChangelogEntry: typeof extractChangelogEntryDef = ({
+  changelogPath,
+  version,
+}) => {
+  const sections = fs.readFileSync(changelogPath, "utf-8").split(/^## /m).slice(1);
+  const section = sections.find((candidate) => {
+    const heading = candidate.split("\n", 1)[0];
+    return heading.includes(`[${version}](`) || heading.startsWith(`${version} (`);
+  });
+  if (!section) throw new Error(`Missing changelog entry for ${version}`);
+
+  const entry = section.split("\n").slice(1).join("\n").trim();
+  return entry;
+};
+
+export const generateChangelog: typeof generateChangelogDef = async ({ getPkgDir, tagPrefix }) => {
   const preset: Preset = createPreset({
     types: DEFAULT_COMMIT_TYPES.map((t) => ({
       ...t,

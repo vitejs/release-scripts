@@ -5,6 +5,46 @@ export declare function generateChangelog(options: {
   tagPrefix?: string;
 }): Promise<void>;
 
+export declare function extractChangelogEntry(options: {
+  changelogPath: string;
+  version: string;
+}): string;
+
+export declare function getReleaseTag(
+  pkg: string,
+  version: string,
+  defaultPackage?: string,
+): string;
+
+export declare function isReleaseCommitSubject(subject: string, tag: string): boolean;
+
+export declare function detectReleaseCommit(options: {
+  subject: string;
+  packages: readonly string[];
+  defaultPackage?: string;
+  /** @default (pkg) => `packages/${pkg}` */
+  getPkgDir?: (pkg: string) => string;
+  toTag?: (pkg: string, version: string) => string;
+}): { pkg: string; version: string; tag: string } | undefined;
+
+export declare function prepareRelease(options: {
+  /** Restricts the accepted package names when provided. */
+  packages?: readonly string[];
+  pkg: string | undefined;
+  release: string;
+  /** @default current prerelease identifier, otherwise "beta" */
+  preid?: string;
+  /** @default (pkg) => `packages/${pkg}` */
+  getPkgDir?: (pkg: string) => string;
+  /** @default (pkg, version) => `${pkg}@${version}` */
+  toTag?: (pkg: string, version: string) => string;
+  generateChangelog?: (pkg: string, version: string) => void | Promise<void>;
+}): Promise<{ pkg: string; previousVersion: string; version: string; tag: string }>;
+
+export declare function validatePublishVersion(version: string): void;
+
+export declare function getPublishTag(version: string, activeVersion?: string): string | undefined;
+
 export declare function publish(options: {
   defaultPackage?: string;
   getPkgDir?: (pkg: string) => string;

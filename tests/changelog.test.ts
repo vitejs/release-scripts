@@ -1,99 +1,166 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { it, expect, onTestFinished } from "vitest";
+import { describe, it, expect, onTestFinished } from "vitest";
 import { createFixture, type FileTree } from "fs-fixture";
 import { exec } from "tinyexec";
-import { generateChangelog } from "../src/changelog.ts";
+import { generateChangelog, extractChangelogEntry } from "../src/changelog.ts";
 
-async function createProjectFixture(source?: FileTree) {
-  const fixture = await createFixture({
-    "package.json": JSON.stringify({
-      name: "test-project",
-      version: "1.0.0",
-      private: true,
-    }),
-    ...source,
+describe("generateChangelog", () => {
+  async function createProjectFixture(source?: FileTree) {
+    const fixture = await createFixture({
+      "package.json": JSON.stringify({
+        name: "test-project",
+        version: "1.0.0",
+        private: true,
+      }),
+      ...source,
+    });
+    onTestFinished(() => fixture.rm());
+
+    await exec("git", ["init"], { nodeOptions: { cwd: fixture.path } });
+    await exec("git", ["remote", "add", "origin", "https://github.com/vitejs/test.git"], {
+      nodeOptions: { cwd: fixture.path },
+    });
+
+    return fixture;
+  }
+
+  async function gitCommit(cwd: string, message: string) {
+    // Write random text to file to allow conventional-changelog to detect commit
+    await fs.writeFile(path.join(cwd, "dummy.txt"), Math.random().toString(36).substring(2, 15));
+    await exec("git", ["add", "."], { nodeOptions: { cwd } });
+    await exec("git", ["commit", "-m", message], { nodeOptions: { cwd } });
+  }
+
+  async function updatePackageJsonVersion(cwd: string, version: string) {
+    const pkgPath = path.join(cwd, "./package.json");
+    const pkg = JSON.parse(await fs.readFile(pkgPath, "utf8"));
+    pkg.version = version;
+    await fs.writeFile(pkgPath, JSON.stringify(pkg));
+  }
+
+  async function initChangelog(cwd: string) {
+    await gitCommit(cwd, "chore: initial commit");
+    await generateChangelogForRelease(cwd);
+  }
+
+  async function generateChangelogForRelease(cwd: string) {
+    await generateChangelog({ getPkgDir: () => cwd, tagPrefix: "" });
+
+    // Tag the version so conventional-changelog tracks this as the last release
+    // and won't track this commit for the next release.
+    const version = JSON.parse(await fs.readFile(path.join(cwd, "./package.json"), "utf8")).version;
+    const tag = `v${version}`;
+    await exec("git", ["tag", "-a", "-m", tag, tag], { nodeOptions: { cwd } });
+  }
+
+  async function readChangelog(cwd: string) {
+    const changelog = await fs.readFile(path.join(cwd, "./CHANGELOG.md"), "utf8");
+    return (
+      changelog
+        // Normalize date
+        .replace(/\d{4}-\d{2}-\d{2}/g, "yyyy-mm-dd")
+        // Normalize short commit hashes
+        .replace(/\[[a-z0-9]{7}\]/g, `[${"x".repeat(7)}]`)
+        // Normalize full commit hashes
+        .replace(/\/[a-z0-9]{40}\)/g, `/${"x".repeat(40)})`)
+    );
+  }
+
+  it("generates a new changelog for empty project", async () => {
+    const fixture = await createProjectFixture();
+    await gitCommit(fixture.path, "chore: initial commit");
+    await generateChangelogForRelease(fixture.path);
+    expect(await readChangelog(fixture.path)).toMatchSnapshot();
   });
-  onTestFinished(() => fixture.rm());
 
-  await exec("git", ["init"], { nodeOptions: { cwd: fixture.path } });
-  await exec("git", ["remote", "add", "origin", "https://github.com/vitejs/test.git"], {
-    nodeOptions: { cwd: fixture.path },
+  it("generates a changelog with commits", async () => {
+    const fixture = await createProjectFixture();
+    await initChangelog(fixture.path);
+
+    await gitCommit(fixture.path, "fix: fix a bug (#1)");
+    await updatePackageJsonVersion(fixture.path, "1.0.1");
+    await generateChangelogForRelease(fixture.path);
+    expect(await readChangelog(fixture.path)).toMatchSnapshot();
+
+    await gitCommit(fixture.path, "feat: add new feature");
+    await updatePackageJsonVersion(fixture.path, "1.1.0");
+    await generateChangelogForRelease(fixture.path);
+    expect(await readChangelog(fixture.path)).toMatchSnapshot();
   });
 
-  return fixture;
-}
-
-async function gitCommit(cwd: string, message: string) {
-  // Write random text to file to allow conventional-changelog to detect commit
-  await fs.writeFile(path.join(cwd, "dummy.txt"), Math.random().toString(36).substring(2, 15));
-  await exec("git", ["add", "."], { nodeOptions: { cwd } });
-  await exec("git", ["commit", "-m", message], { nodeOptions: { cwd } });
-}
-
-async function updatePackageJsonVersion(cwd: string, version: string) {
-  const pkgPath = path.join(cwd, "./package.json");
-  const pkg = JSON.parse(await fs.readFile(pkgPath, "utf8"));
-  pkg.version = version;
-  await fs.writeFile(pkgPath, JSON.stringify(pkg));
-}
-
-async function initChangelog(cwd: string) {
-  await gitCommit(cwd, "chore: initial commit");
-  await generateChangelogForRelease(cwd);
-}
-
-async function generateChangelogForRelease(cwd: string) {
-  await generateChangelog({ getPkgDir: () => cwd, tagPrefix: "" });
-
-  // Tag the version so conventional-changelog tracks this as the last release
-  // and won't track this commit for the next release.
-  const version = JSON.parse(await fs.readFile(path.join(cwd, "./package.json"), "utf8")).version;
-  const tag = `v${version}`;
-  await exec("git", ["tag", "-a", "-m", tag, tag], { nodeOptions: { cwd } });
-}
-
-async function readChangelog(cwd: string) {
-  const changelog = await fs.readFile(path.join(cwd, "./CHANGELOG.md"), "utf8");
-  return (
-    changelog
-      // Normalize date
-      .replace(/\d{4}-\d{2}-\d{2}/g, "yyyy-mm-dd")
-      // Normalize short commit hashes
-      .replace(/\[[a-z0-9]{7}\]/g, `[${"x".repeat(7)}]`)
-      // Normalize full commit hashes
-      .replace(/\/[a-z0-9]{40}\)/g, `/${"x".repeat(40)})`)
-  );
-}
-
-it("generates a new changelog for empty project", async () => {
-  const fixture = await createProjectFixture();
-  await gitCommit(fixture.path, "chore: initial commit");
-  await generateChangelogForRelease(fixture.path);
-  expect(await readChangelog(fixture.path)).toMatchSnapshot();
+  it("generates a changelog with breaking changes", async () => {
+    const fixture = await createProjectFixture();
+    await initChangelog(fixture.path);
+    await gitCommit(fixture.path, "feat!: introduce breaking change");
+    await gitCommit(fixture.path, "fix: fix a bug (#1)");
+    await updatePackageJsonVersion(fixture.path, "2.0.0");
+    await generateChangelogForRelease(fixture.path);
+    expect(await readChangelog(fixture.path)).toMatchSnapshot();
+  });
 });
 
-it("generates a changelog with commits", async () => {
-  const fixture = await createProjectFixture();
-  await initChangelog(fixture.path);
+describe("extractChangelogEntry", () => {
+  async function createChangelog(content: string) {
+    const fixture = await createFixture({ "CHANGELOG.md": content });
+    onTestFinished(() => fixture.rm());
+    return path.join(fixture.path, "CHANGELOG.md");
+  }
 
-  await gitCommit(fixture.path, "fix: fix a bug (#1)");
-  await updatePackageJsonVersion(fixture.path, "1.0.1");
-  await generateChangelogForRelease(fixture.path);
-  expect(await readChangelog(fixture.path)).toMatchSnapshot();
+  it("extracts a conventional changelog entry", async () => {
+    const changelogPath = await createChangelog(`# Changelog
 
-  await gitCommit(fixture.path, "feat: add new feature");
-  await updatePackageJsonVersion(fixture.path, "1.1.0");
-  await generateChangelogForRelease(fixture.path);
-  expect(await readChangelog(fixture.path)).toMatchSnapshot();
-});
+## [1.2.3](https://example.com/compare/v1.2.2...v1.2.3) (2026-07-30)
 
-it("generates a changelog with breaking changes", async () => {
-  const fixture = await createProjectFixture();
-  await initChangelog(fixture.path);
-  await gitCommit(fixture.path, "feat!: introduce breaking change");
-  await gitCommit(fixture.path, "fix: fix a bug (#1)");
-  await updatePackageJsonVersion(fixture.path, "2.0.0");
-  await generateChangelogForRelease(fixture.path);
-  expect(await readChangelog(fixture.path)).toMatchSnapshot();
+### Features
+
+* add a feature
+
+## [1.2.2](https://example.com/compare/v1.2.1...v1.2.2) (2026-07-20)
+
+* older change
+  `);
+
+    expect(extractChangelogEntry({ changelogPath, version: "1.2.3" })).toBe(`### Features
+
+* add a feature`);
+  });
+
+  // plugin-react, plugin-react-swc
+  it("extracts a manually maintained changelog entry", async () => {
+    const changelogPath = await createChangelog(`## Unreleased
+
+## 1.2.3 (2026-07-30)
+
+- Fix a bug
+
+## 1.2.2 (2026-07-20)
+
+- Older fix
+  `);
+
+    expect(extractChangelogEntry({ changelogPath, version: "1.2.3" })).toBe("- Fix a bug");
+  });
+
+  it("throws when a changelog entry is missing", async () => {
+    const changelogPath = await createChangelog(`## 1.2.2 (2026-07-20)
+
+- Older fix
+  `);
+
+    expect(() => extractChangelogEntry({ changelogPath, version: "1.2.3" })).toThrow(
+      "Missing changelog entry for 1.2.3",
+    );
+  });
+
+  it("doesn't throw when a changelog entry is empty", async () => {
+    const changelogPath = await createChangelog(`## 1.2.3 (2026-07-30)
+
+## 1.2.2 (2026-07-20)
+
+- Older fix
+  `);
+
+    expect(extractChangelogEntry({ changelogPath, version: "1.2.3" })).toBe("");
+  });
 });
