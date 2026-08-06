@@ -1,6 +1,6 @@
 {
   "name": "@vitejs/release-scripts",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "@vitejs release scripts",
   "license": "MIT",
   "repository": {
