@@ -8,6 +8,9 @@ inputs:
   token:
     description: GitHub App token with contents and pull request write access
     required: true
+  package-name:
+    description: Name of the package to release
+    required: true
   package-path:
     description: Path to the package to release
     required: true
