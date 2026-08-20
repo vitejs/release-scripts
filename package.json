@@ -37,7 +37,7 @@
     "fs-fixture": "^2.14.0",
     "oxfmt": "^0.64.0",
     "rolldown": "^1.2.4",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vitest": "^4.1.11"
   },
   "packageManager": "pnpm@11.22.0"
