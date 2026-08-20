@@ -4,9 +4,9 @@ description: Commit prepared release files and open a pull request
 inputs:
   app-slug:
     description: Slug of the GitHub App used to open the pull request
-    required: true
+    required: false
   token:
-    description: GitHub App token with contents and pull request write access
+    description: GitHub App token or github.token with contents and pull request write access
     required: true
   package-name:
     description: Name of the package to release
@@ -39,6 +39,7 @@ runs:
         VERSION: ${{ inputs.version }}
       run: |
         BRANCH="release-$PACKAGE_NAME-$VERSION-$GITHUB_RUN_ID"
+        APP_SLUG="${APP_SLUG:-github-actions}"
         BOT_ID="$(gh api "/users/$APP_SLUG%5Bbot%5D" --jq .id)"
         git config user.name "$APP_SLUG[bot]"
         git config user.email "$BOT_ID+$APP_SLUG[bot]@users.noreply.github.com"
