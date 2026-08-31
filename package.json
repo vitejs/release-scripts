@@ -35,10 +35,10 @@
     "@types/prompts": "^2.4.9",
     "@types/semver": "^7.8.0",
     "fs-fixture": "^2.14.0",
-    "oxfmt": "^0.64.0",
-    "rolldown": "^1.2.5",
+    "oxfmt": "^0.65.0",
+    "rolldown": "^1.2.6",
     "typescript": "^7.0.2",
     "vitest": "^4.1.11"
   },
-  "packageManager": "pnpm@11.22.0"
+  "packageManager": "pnpm@11.24.0"
 }
