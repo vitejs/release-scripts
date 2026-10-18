@@ -1,4 +1,4 @@
-import * as semver from "semver";
+import { getPrerelease, isLessThan, tryParse } from "verkit";
 import { args, getActiveVersion, getPackageInfo, publishPackage, step } from "./utils.ts";
 import type {
   getPublishTag as getPublishTagDef,
@@ -7,12 +7,12 @@ import type {
 } from "./types.d.ts";
 
 export const validatePublishVersion: typeof validatePublishVersionDef = (version) => {
-  const parsed = semver.parse(version);
+  const parsed = tryParse(version);
   if (!parsed) {
     throw new Error(`Invalid publish version ${JSON.stringify(version)}`);
   }
 
-  const prereleaseIdentifier = parsed.prerelease[0];
+  const prereleaseIdentifier = parsed.prerelease?.[0];
   if (
     prereleaseIdentifier !== undefined &&
     prereleaseIdentifier !== "alpha" &&
@@ -24,11 +24,11 @@ export const validatePublishVersion: typeof validatePublishVersionDef = (version
 
 export const getPublishTag: typeof getPublishTagDef = (version, activeVersion) => {
   validatePublishVersion(version);
-  const prereleaseIdentifier = semver.prerelease(version)?.[0];
+  const prereleaseIdentifier = getPrerelease(version)?.[0];
   if (prereleaseIdentifier === "alpha" || prereleaseIdentifier === "beta") {
     return prereleaseIdentifier;
   }
-  return activeVersion && semver.lt(version, activeVersion) ? "previous" : undefined;
+  return activeVersion && isLessThan(version, activeVersion) ? "previous" : undefined;
 };
 
 export const publish: typeof publishDef = async ({

@@ -1,5 +1,5 @@
 import prompts from "prompts";
-import semver from "semver";
+import { isValid } from "verkit";
 import colors from "picocolors";
 import {
   args,
@@ -77,7 +77,7 @@ export const release: typeof def = async ({
     }
   }
 
-  if (!semver.valid(targetVersion)) {
+  if (!targetVersion || !isValid(targetVersion)) {
     throw new Error(`invalid target version: ${targetVersion}`);
   }
 
