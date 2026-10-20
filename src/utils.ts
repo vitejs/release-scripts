@@ -3,8 +3,8 @@ import path from "node:path";
 import colors from "picocolors";
 import type { Options as TinyExecOptions, Result as TinyExecResult } from "tinyexec";
 import { exec } from "tinyexec";
-import type { ReleaseType } from "semver";
-import * as semver from "semver";
+import type { IncrementType } from "verkit";
+import { increment } from "verkit";
 import mri from "mri";
 
 export const args = mri(process.argv.slice(2));
@@ -73,8 +73,8 @@ export function getVersionChoices(currentVersion: string): VersionChoice[] {
   const currentAlpha = currentVersion.includes("alpha");
   const isStable = !currentBeta && !currentAlpha;
 
-  function inc(i: ReleaseType, tag = currentAlpha ? "alpha" : "beta") {
-    return semver.inc(currentVersion, i, tag)!;
+  function inc(i: IncrementType, tag = currentAlpha ? "alpha" : "beta") {
+    return increment(currentVersion, i, { identifier: tag })!;
   }
 
   let versionChoices: VersionChoice[] = [

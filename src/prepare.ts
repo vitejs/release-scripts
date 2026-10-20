@@ -1,27 +1,27 @@
 import fs from "node:fs";
 import path from "node:path";
-import semver from "semver";
-import type { ReleaseType } from "semver";
+import type { IncrementType } from "verkit";
+import { getPrerelease, increment, INCREMENT_TYPES, isValid } from "verkit";
 import { getReleaseTag } from "./detectRelease.ts";
 import { validatePublishVersion } from "./publish.ts";
 import type { prepareRelease as prepareReleaseDef } from "./types.d.ts";
 import { updateVersion } from "./utils.ts";
 
 function resolveVersion(currentVersion: string, release: string, preid: string): string {
-  if (semver.valid(release)) return release;
+  if (isValid(release)) return release;
 
   const releaseType =
-    release === "next" ? (semver.prerelease(currentVersion) ? "prerelease" : "patch") : release;
-  if (!semver.RELEASE_TYPES.includes(releaseType as ReleaseType)) {
+    release === "next" ? (getPrerelease(currentVersion)?.length ? "prerelease" : "patch") : release;
+  if (releaseType === "release" || !INCREMENT_TYPES.includes(releaseType as IncrementType)) {
     throw new Error(`Invalid Version: ${release}`);
   }
 
-  let version = semver.inc(currentVersion, releaseType as ReleaseType, preid);
+  let version = increment(currentVersion, releaseType as IncrementType, { identifier: preid });
   if (!version) throw new Error(`Invalid Version: ${release}`);
 
-  const prerelease = semver.prerelease(version);
+  const prerelease = getPrerelease(version);
   if (releaseType.startsWith("pre") && prerelease?.[0] === preid && prerelease[1] === 0) {
-    version = semver.inc(version, "prerelease", preid)!;
+    version = increment(version, "prerelease", { identifier: preid })!;
   }
   return version;
 }
@@ -42,14 +42,14 @@ export const prepareRelease: typeof prepareReleaseDef = async ({
 
   const pkgDir = path.resolve(getPkgDir(pkg));
   const pkgPath = path.join(pkgDir, "package.json");
-  if (semver.valid(release)) validatePublishVersion(release);
+  if (isValid(release)) validatePublishVersion(release);
   const packageJson = JSON.parse(fs.readFileSync(pkgPath, "utf-8")) as {
     version?: unknown;
   };
   if (typeof packageJson.version !== "string") {
     throw new Error(`Package ${JSON.stringify(pkg)} does not have a valid version`);
   }
-  const currentPrerelease = semver.prerelease(packageJson.version);
+  const currentPrerelease = getPrerelease(packageJson.version);
   const currentPreid =
     typeof currentPrerelease?.[0] === "string" ? currentPrerelease[0] : undefined;
 
