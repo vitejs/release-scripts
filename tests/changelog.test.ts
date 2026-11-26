@@ -126,6 +126,27 @@ describe("extractChangelogEntry", () => {
 * add a feature`);
   });
 
+  for (const heading of [
+    "<small>0.0.1 (2026-11-26)</small>",
+    "<small>[0.0.1](https://example.com/compare/v0.0.0...v0.0.1) (2026-11-26)</small>",
+  ]) {
+    it(`extracts a changelog entry with heading ${heading}`, async () => {
+      const entry = `### Features
+
+* init ([3007710](https://github.com/vitejs/deployment-metadata/commit/3007710e91658f57dbce9bf5a16eb657da64a6a8))
+* make \`DeploymentMetadata\` the union of all metadata types ([#16](https://github.com/vitejs/deployment-metadata/issues/16)) ([3c4426e](https://github.com/vitejs/deployment-metadata/commit/3c4426e2b7703b80dc3f46464a64e223b3b38a09))`;
+      const changelogPath = await createChangelog(`## ${heading}
+${entry}
+
+## 0.0.0 (2026-11-25)
+
+* older change
+`);
+
+      expect(extractChangelogEntry({ changelogPath, version: "0.0.1" })).toBe(entry);
+    });
+  }
+
   // plugin-react, plugin-react-swc
   it("extracts a manually maintained changelog entry", async () => {
     const changelogPath = await createChangelog(`## Unreleased
