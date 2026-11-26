@@ -47,7 +47,7 @@ export const extractChangelogEntry: typeof extractChangelogEntryDef = ({
 }) => {
   const sections = fs.readFileSync(changelogPath, "utf-8").split(/^## /m).slice(1);
   const section = sections.find((candidate) => {
-    const heading = candidate.split("\n", 1)[0];
+    const heading = candidate.split("\n", 1)[0].replace(/^<small>/, "");
     return heading.includes(`[${version}](`) || heading.startsWith(`${version} (`);
   });
   if (!section) throw new Error(`Missing changelog entry for ${version}`);
